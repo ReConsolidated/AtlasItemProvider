@@ -1,7 +1,11 @@
 name: AtlasItemProvider
 version: '${project.version}'
 main: io.github.reconsolidated.atlasitemprovider.AtlasItemProvider
-api-version: 1.18
+api-version: 1.17
 load: STARTUP
 authors: [ GracjanPasik ]
 description: This plugin provides Items for other plugins on Atlas Network
+commands:
+  itemprovider:
+    description: ItemProviderCommand
+    permission: itemprovider.admin

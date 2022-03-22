@@ -17,7 +17,7 @@ public class CustomConfig {
                 customConfigFile.createNewFile();
             }
             catch (IOException e){
-                Bukkit.broadcastMessage("Nie udało się wczytać pliku konfiguracyjnego: " + name);
+                Bukkit.getLogger().warning("Couldn't load config file: " + name);
             }
         }
         customConfig = new YamlConfiguration();

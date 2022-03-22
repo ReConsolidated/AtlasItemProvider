@@ -6,21 +6,27 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-public final class AtlasItemProvider extends JavaPlugin {
-    private static File dataFolder;
-    private static Plugin plugin;
-    private static NamespacedKey nameKey;
+public final class AtlasItemProvider extends JavaPlugin  {
+    static {
+        ConfigurationSerialization.registerClass(ProviderItem.class, "provideritem");
+    }
 
+    private File dataFolder;
+    private NamespacedKey nameKey;
 
-    public static ItemStack getItem(String category, String name, int amount) {
+    public ItemStack getItem(String category, String name, int amount) {
         YamlConfiguration config = CustomConfig.loadCustomConfig(category, dataFolder, true);
         if (config.contains(name)) {
             return named(config.getItemStack(name), name);
@@ -34,12 +40,23 @@ public final class AtlasItemProvider extends JavaPlugin {
         }
     }
 
-    private static ItemStack named(ItemStack item, String name) {
+    public List<ItemStack> getAllFromCategory(String category) {
+
+        YamlConfiguration config = CustomConfig.loadCustomConfig(category, dataFolder, true);
+        List<ItemStack> items = new ArrayList<>();
+        for (String key : config.getKeys(false)) {
+            items.add(config.getItemStack(key));
+        }
+        return items;
+    }
+
+    private ItemStack named(ItemStack item, String name) {
+
         item.getItemMeta().getPersistentDataContainer().set(nameKey, PersistentDataType.STRING, name);
         return item;
     }
 
-    public static ItemStack getItem(String category, String name) {
+    public ItemStack getItem(String category, String name) {
         return getItem(category, name, 1);
     }
 
@@ -54,9 +71,12 @@ public final class AtlasItemProvider extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        nameKey = new NamespacedKey(this, "item_name");
         dataFolder = getDataFolder();
-        plugin = this;
-        nameKey = new NamespacedKey(plugin, "name");
+
+        new ItemProviderCommand(this);
+        getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);
+        ExampleItems.init(this, this.getDataFolder());
     }
 
     @Override
@@ -69,5 +89,12 @@ public final class AtlasItemProvider extends JavaPlugin {
         meta.displayName(displayName.style(Style.style().decoration(TextDecoration.ITALIC, false)));
         item.setItemMeta(meta);
         return item;
+    }
+
+    public void addItem(ItemStack item, String name, String category) {
+        YamlConfiguration config = CustomConfig.loadCustomConfig(category, dataFolder, true);
+        assert config != null : "Couldn't load config: " + category;
+        config.set(name, item);
+        CustomConfig.saveCustomConfig(category, dataFolder, config);
     }
 }
