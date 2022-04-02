@@ -1,5 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.CritChance;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Durability;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class AtlasItemProvider extends JavaPlugin  {
+    public static AtlasItemProvider plugin;
+
     static {
         ConfigurationSerialization.registerClass(ProviderItem.class, "provideritem");
     }
@@ -71,10 +75,15 @@ public final class AtlasItemProvider extends JavaPlugin  {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        plugin = this;
         nameKey = new NamespacedKey(this, "item_name");
         dataFolder = getDataFolder();
 
         new ItemProviderCommand(this);
+
+        new Durability();
+        new CritChance();
+
         getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);
         ExampleItems.init(this, this.getDataFolder());
     }

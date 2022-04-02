@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomSword;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -37,6 +38,11 @@ public class ExampleItems {
         chestPlateWithKey.setAmount(5);
         chestPlateWithKey.addItemFlags(ItemFlag.HIDE_DESTROYS);
         config.set("chestplate_buffed", chestPlateWithKey);
+
+
+        config.set("custom_sword",
+                CustomSword.createCustomSword(Material.DIAMOND_SWORD,
+                        7, 100, 50, 40));
 
         CustomConfig.saveCustomConfig("example", dataFolder, config);
     }
