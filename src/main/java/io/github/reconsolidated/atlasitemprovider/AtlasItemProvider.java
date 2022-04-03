@@ -1,7 +1,9 @@
 package io.github.reconsolidated.atlasitemprovider;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.BowDamage;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.CritChance;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Durability;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.HuntingLuck;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -9,7 +11,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -83,6 +84,8 @@ public final class AtlasItemProvider extends JavaPlugin  {
 
         new Durability();
         new CritChance();
+        new HuntingLuck();
+        new BowDamage();
 
         getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);
         ExampleItems.init(this, this.getDataFolder());

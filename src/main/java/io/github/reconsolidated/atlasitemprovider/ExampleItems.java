@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomBow;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomSword;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -45,11 +46,11 @@ public class ExampleItems {
                         7, 100, 50, 40));
 
         config.set("custom_bow",
-                CustomSword.createCustomSword(Material.BOW,
-                        30, 100, 50, 40));
+                CustomBow.createCustomBow("&cDangerous Bow", Material.BOW,
+                        30, 100, 10, 40));
 
         config.set("custom_crossbow",
-                CustomSword.createCustomSword(Material.CROSSBOW,
+                CustomBow.createCustomBow("&#55FF66Dangerous crossbow", Material.CROSSBOW,
                         30, 100, 50, 40));
 
 

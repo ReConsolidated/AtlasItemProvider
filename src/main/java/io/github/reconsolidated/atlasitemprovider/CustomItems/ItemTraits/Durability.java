@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
@@ -19,7 +20,6 @@ public class Durability implements Listener {
 
     @EventHandler
     public void onItemUse(PlayerItemDamageEvent event) {
-        Bukkit.broadcastMessage("Item damage event");
         ItemStack item = event.getItem();
         if (item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
@@ -30,18 +30,17 @@ public class Durability implements Listener {
             }
             currentDurability -= event.getDamage();
             meta.getPersistentDataContainer().set(getDurabilityKey(), PersistentDataType.INTEGER, currentDurability);
-            Bukkit.broadcastMessage("damage: " + event.getDamage());
-            Bukkit.broadcastMessage("new durability: " + currentDurability);
 
             if (meta instanceof Damageable) {
                 Damageable dmg = (Damageable) meta;
                 dmg.getDamage();
                 int itemMaxDurability = item.getType().getMaxDurability();
                 int itemCurrentDurability = currentDurability * itemMaxDurability/maxDurability ;
-                Bukkit.broadcastMessage("item new durability: " + itemCurrentDurability);
                 dmg.setDamage(itemMaxDurability - itemCurrentDurability);
             }
 
+            item.setItemMeta(meta);
+            meta.lore(LoreProvider.getLore(item));
             item.setItemMeta(meta);
         }
     }

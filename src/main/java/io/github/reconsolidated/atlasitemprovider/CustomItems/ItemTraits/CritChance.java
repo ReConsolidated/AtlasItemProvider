@@ -3,8 +3,6 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -19,6 +17,8 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Random;
 
+
+// Stats: Damage, Durability, Crit Chance, Hunting Luck
 public class CritChance implements Listener {
     public CritChance() {
         AtlasItemProvider.plugin.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
@@ -33,7 +33,7 @@ public class CritChance implements Listener {
         if (event.getDamager() instanceof Player) {
             Player player = (Player) event.getDamager();
             ItemStack item = player.getInventory().getItemInMainHand();
-            if (item == null || item.getType() == Material.AIR) return;
+            if (item.getType() == Material.AIR) return;
             ItemMeta meta = item.getItemMeta();
             Double critChance = meta.getPersistentDataContainer().get(getCritChanceKey(), PersistentDataType.DOUBLE);
             if (critChance != null) {
@@ -49,9 +49,13 @@ public class CritChance implements Listener {
             Projectile projectile = (Projectile) event.getDamager();
             if (projectile.getShooter() instanceof Player) {
                 Player player = (Player) projectile.getShooter();
-                player.sendMessage(ChatColor.RED + "Projecitle hit");
-                if (projectile.getPersistentDataContainer().get(getCritChanceKey(), PersistentDataType.DOUBLE) != null) {
-                    player.sendMessage(ChatColor.RED + "WORKS D:D:D!!!");
+                Double critChance = projectile.getPersistentDataContainer().get(getCritChanceKey(), PersistentDataType.DOUBLE);
+                if (critChance != null) {
+                    Random random = new Random();
+                    if (random.nextInt(100) < critChance) {
+                        event.setDamage(event.getDamage() * 2);
+                        player.sendActionBar(Component.text("CRIT!").color(TextColor.color(255, 0, 0)));
+                    }
                 }
             }
         }
