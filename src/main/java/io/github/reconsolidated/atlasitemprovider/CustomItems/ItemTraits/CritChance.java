@@ -3,8 +3,6 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -52,13 +50,25 @@ public class CritChance implements Listener {
             if (projectile.getShooter() instanceof Player) {
                 Player player = (Player) projectile.getShooter();
                 player.sendMessage(ChatColor.RED + "Projecitle hit");
+                if (projectile.getPersistentDataContainer().get(getCritChanceKey(), PersistentDataType.DOUBLE) != null) {
+                    player.sendMessage(ChatColor.RED + "WORKS D:D:D!!!");
+                }
             }
         }
     }
 
     @EventHandler
     public void onShoot(EntityShootBowEvent event) {
-        Bukkit.broadcastMessage("Shoot event"); // works
+        ItemStack item = event.getBow();
+        if (item != null) {
+            ItemMeta meta = item.getItemMeta();
+            if (meta != null) {
+                Double chance = meta.getPersistentDataContainer().get(getCritChanceKey(), PersistentDataType.DOUBLE);
+                if (chance != null) {
+                    event.getProjectile().getPersistentDataContainer().set(getCritChanceKey(), PersistentDataType.DOUBLE, chance);
+                }
+            }
+        }
     }
 
     public static NamespacedKey getCritChanceKey() {

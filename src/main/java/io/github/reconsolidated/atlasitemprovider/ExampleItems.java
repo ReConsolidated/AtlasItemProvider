@@ -44,6 +44,15 @@ public class ExampleItems {
                 CustomSword.createCustomSword(Material.DIAMOND_SWORD,
                         7, 100, 50, 40));
 
+        config.set("custom_bow",
+                CustomSword.createCustomSword(Material.BOW,
+                        30, 100, 50, 40));
+
+        config.set("custom_crossbow",
+                CustomSword.createCustomSword(Material.CROSSBOW,
+                        30, 100, 50, 40));
+
+
         CustomConfig.saveCustomConfig("example", dataFolder, config);
     }
 }
