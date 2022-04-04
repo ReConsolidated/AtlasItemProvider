@@ -9,3 +9,5 @@ commands:
   itemprovider:
     description: ItemProviderCommand
     permission: itemprovider.admin
+  blacksmith:
+    description: Opens blacksmith menu.

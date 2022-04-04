@@ -30,9 +30,14 @@ public class LoreProvider {
             result.add(Component.text(ColorHelper.translate("Bow Damage: " + bowDamage)));
         }
 
-        Integer durability = container.get(Durability.getDurabilityKey(), PersistentDataType.INTEGER);
-        if (durability != null) {
-            result.add(Component.text(ColorHelper.translate("Durability: " + durability)));
+        Double toolLuck = container.get(ToolLuck.getToolLuckKey(), PersistentDataType.DOUBLE);
+        if (toolLuck != null) {
+            result.add(Component.text(ColorHelper.translate(getToolLuckText(item) + toolLuck)));
+        }
+
+        Double armor = container.get(Armor.getArmorKey(), PersistentDataType.DOUBLE);
+        if (armor != null) {
+            result.add(Component.text(ColorHelper.translate("Armor: " + armor)));
         }
 
         Double critChance = container.get(CritChance.getCritChanceKey(), PersistentDataType.DOUBLE);
@@ -45,11 +50,31 @@ public class LoreProvider {
             result.add(Component.text(ColorHelper.translate("Hunting Luck: " + huntLuck)));
         }
 
+        Integer durability = container.get(Durability.getDurabilityKey(), PersistentDataType.INTEGER);
+        if (durability != null) {
+            result.add(Component.text(ColorHelper.translate("Durability: " + durability)));
+        }
+
+
+
         for (int i = 0; i<result.size(); i++) {
             result.set(i, result.get(i).decoration(TextDecoration.ITALIC, false));
         }
 
         result.add(Component.text(""));
         return result;
+    }
+
+    private static String getToolLuckText(ItemStack item) {
+        if (item.getType().toString().contains("PICKAXE")) {
+            return "Mining Luck: ";
+        }
+        if (item.getType().toString().contains("AXE")) {
+            return "Chopping Luck: ";
+        }
+        if (item.getType().toString().contains("SHOVEL")) {
+            return "Shoveling Luck: ";
+        }
+        return "Luck: ";
     }
 }

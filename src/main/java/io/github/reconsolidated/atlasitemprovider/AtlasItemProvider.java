@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.BlacksmithCommand;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.BowDamage;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.CritChance;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Durability;
@@ -86,6 +87,8 @@ public final class AtlasItemProvider extends JavaPlugin  {
         new CritChance();
         new HuntingLuck();
         new BowDamage();
+
+        new BlacksmithCommand();
 
         getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);
         ExampleItems.init(this, this.getDataFolder());

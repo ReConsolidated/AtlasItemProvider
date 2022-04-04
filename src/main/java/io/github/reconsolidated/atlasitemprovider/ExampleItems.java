@@ -1,7 +1,8 @@
 package io.github.reconsolidated.atlasitemprovider;
 
-import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomBow;
-import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomSword;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Items.CustomBow;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Items.CustomSword;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Items.CustomTool;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -42,7 +43,7 @@ public class ExampleItems {
 
 
         config.set("custom_sword",
-                CustomSword.createCustomSword(Material.DIAMOND_SWORD,
+                CustomSword.createCustomSword("&#00FF22&lExcalibur", Material.DIAMOND_SWORD,
                         7, 100, 50, 40));
 
         config.set("custom_bow",
@@ -53,6 +54,10 @@ public class ExampleItems {
                 CustomBow.createCustomBow("&#55FF66Dangerous crossbow", Material.CROSSBOW,
                         30, 100, 50, 40));
 
+
+        config.set("custom_shovel",
+                CustomTool.createCustomTool("&#55FF66Gucci Shovel", Material.DIAMOND_SHOVEL,
+                        30, 100, 50));
 
         CustomConfig.saveCustomConfig("example", dataFolder, config);
     }
