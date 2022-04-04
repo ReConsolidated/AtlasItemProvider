@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.Items;
 
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Upgrades;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.BowDamage;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.CritChance;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Durability;
@@ -20,6 +21,7 @@ public class CustomBow {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
 
+        meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
         meta.getPersistentDataContainer().set(BowDamage.getBowDamageKey(), PersistentDataType.DOUBLE, damage);
         meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
         meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);

@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.Items;
 
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Upgrades;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Durability;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.ToolLuck;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
@@ -25,6 +26,7 @@ public class CustomTool {
                 new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed",
                         miningSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
 
+        meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
         meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
         meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
         meta.getPersistentDataContainer().set(ToolLuck.getToolLuckKey(), PersistentDataType.DOUBLE, luck);

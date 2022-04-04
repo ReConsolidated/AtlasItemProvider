@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems;
 
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Upgrades;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -53,6 +54,11 @@ public class LoreProvider {
         Integer durability = container.get(Durability.getDurabilityKey(), PersistentDataType.INTEGER);
         if (durability != null) {
             result.add(Component.text(ColorHelper.translate("Durability: " + durability)));
+        }
+
+        Integer upgrades = container.get(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER);
+        if (upgrades != null) {
+            result.add(Component.text(ColorHelper.translate("Upgrades: " + upgrades + "/" + Upgrades.getMaxUpgrades())));
         }
 
 

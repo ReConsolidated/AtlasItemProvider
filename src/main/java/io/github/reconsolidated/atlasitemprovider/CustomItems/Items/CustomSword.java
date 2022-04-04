@@ -2,6 +2,7 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.Items;
 
 
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Upgrades;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.CritChance;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Damage;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Durability;
@@ -30,6 +31,7 @@ public class CustomSword {
                 new AttributeModifier(UUID.randomUUID(), "generic.attackDamage",
                 damage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
 
+        meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
         meta.getPersistentDataContainer().set(Damage.getDamageKey(), PersistentDataType.DOUBLE, damage);
         meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
         meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);

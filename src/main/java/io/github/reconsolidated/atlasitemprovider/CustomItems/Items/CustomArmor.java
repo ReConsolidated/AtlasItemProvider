@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.Items;
 
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Upgrades;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
 import net.kyori.adventure.text.Component;
@@ -33,6 +34,7 @@ public class CustomArmor {
                 new AttributeModifier(UUID.randomUUID(), "generic.armor",
                         armor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
 
+        meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
         meta.getPersistentDataContainer().set(Armor.getArmorKey(), PersistentDataType.DOUBLE, armor);
         meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
         meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);

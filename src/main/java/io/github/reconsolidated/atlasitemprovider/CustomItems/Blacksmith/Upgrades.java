@@ -1,11 +1,13 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith;
 
+import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import it.unimi.dsi.fastutil.Pair;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -16,6 +18,15 @@ import java.util.List;
 import java.util.Random;
 
 public class Upgrades {
+    public static int getMaxUpgrades() {
+        return 100;
+    }
+
+    public static NamespacedKey getUpgradesKey() {
+        return new NamespacedKey(AtlasItemProvider.plugin, "item_upgrades");
+    }
+
+
     public static ItemStack getPowder(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return null;
@@ -100,5 +111,20 @@ public class Upgrades {
 
     private static String getDustName(Trait trait) {
         return getTraitName(trait) + " Dust";
+    }
+
+    public static int getUpgrades(ItemStack inputEquipment) {
+        if (inputEquipment.getItemMeta() == null) return 0;
+        Integer upgrades = inputEquipment.getItemMeta().getPersistentDataContainer().get(getUpgradesKey(), PersistentDataType.INTEGER);
+        if (upgrades == null) return 0;
+        return upgrades;
+    }
+
+    public static void setUpgrades(ItemStack item, int newUpgrades) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return;
+
+        meta.getPersistentDataContainer().set(getUpgradesKey(), PersistentDataType.INTEGER, newUpgrades);
+        item.setItemMeta(meta);
     }
 }
