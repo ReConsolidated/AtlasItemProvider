@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Items.CustomBow;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Items.CustomSword;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Items.CustomTool;
@@ -58,6 +59,10 @@ public class ExampleItems {
         config.set("custom_shovel",
                 CustomTool.createCustomTool("&#55FF66Gucci Shovel", Material.DIAMOND_SHOVEL,
                         30, 100, 50));
+
+
+        config.set("enchant_dust_30",
+                EnchantmentsAnvil.getChanceDust(30));
 
         CustomConfig.saveCustomConfig("example", dataFolder, config);
     }

@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.BlacksmithCommand;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.BowDamage;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.CritChance;
@@ -92,6 +93,8 @@ public final class AtlasItemProvider extends JavaPlugin  {
 
         getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);
         ExampleItems.init(this, this.getDataFolder());
+
+        getServer().getPluginManager().registerEvents(new EnchantmentsAnvil(), this);
     }
 
     @Override
