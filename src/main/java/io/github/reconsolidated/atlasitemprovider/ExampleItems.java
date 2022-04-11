@@ -64,6 +64,7 @@ public class ExampleItems {
         config.set("enchant_dust_30",
                 EnchantmentsAnvil.getChanceDust(30));
 
+
         CustomConfig.saveCustomConfig("example", dataFolder, config);
     }
 }

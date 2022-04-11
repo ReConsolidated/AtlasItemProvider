@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems;
 
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Upgrades;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import net.kyori.adventure.text.Component;
@@ -20,6 +21,11 @@ public class LoreProvider {
 
         ItemMeta meta = item.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
+
+        int upgradeChance = EnchantmentsAnvil.getAnvilChance(item);
+        if (upgradeChance != 100) {
+            result.add(Component.text(ColorHelper.translate("Success Chance: " + upgradeChance)));
+        }
 
         Double damage = container.get(Damage.getDamageKey(), PersistentDataType.DOUBLE);
         if (damage != null) {

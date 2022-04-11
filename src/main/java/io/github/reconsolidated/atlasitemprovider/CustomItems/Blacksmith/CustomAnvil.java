@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Trait;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
 import net.md_5.bungee.api.ChatColor;
@@ -35,13 +36,25 @@ public class CustomAnvil implements Listener {
         if (!event.getView().equals(view)) return;
 
         if (event.getInventory().getInputEquipment() != null && event.getInventory().getInputMineral() != null) {
+            // UPGRADES
             if (isUpgradeable(event.getInventory().getInputEquipment()) && isUpgradePowder(event.getInventory().getInputMineral())) {
                 event.setResult(getUpgradeResult(event.getInventory().getInputEquipment(), event.getInventory().getInputMineral()));
+            }
+            // APPLYING ENCHANTMENT DUST
+            if (isEnchantedBook(event.getInventory().getInputEquipment()) && EnchantmentsAnvil.isChanceDust(event.getInventory().getInputMineral())) {
+                event.setResult(EnchantmentsAnvil.getUpgradeResult(event.getInventory().getInputEquipment(), event.getInventory().getInputMineral()));
             }
         } else if (event.getInventory().getInputEquipment() != null && isUpgradeable(event.getInventory().getInputEquipment())) {
             event.setResult(getPowderResult(event.getInventory().getInputEquipment()));
         }
 
+    }
+
+    private boolean isEnchantedBook(ItemStack item) {
+        if (item.getType() == Material.BOOK) {
+            return item.getEnchantments().size() > 0;
+        }
+        return false;
     }
 
     @EventHandler

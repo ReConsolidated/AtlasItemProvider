@@ -18,9 +18,18 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.List;
 import java.util.Random;
 
 public class EnchantmentsAnvil implements Listener {
+
+    public static ItemStack getUpgradeResult(ItemStack inputEquipment, ItemStack inputMineral) {
+        int currentChance = getAnvilChance(inputEquipment);
+        int addedChance = getAnvilChance(inputMineral);
+        ItemStack copy = inputEquipment.clone();
+        setAnvilChance(copy, Math.min(100, currentChance + addedChance));
+        return copy;
+    }
 
     @EventHandler
     public void onAnvilUse(InventoryClickEvent event) {
@@ -63,12 +72,32 @@ public class EnchantmentsAnvil implements Listener {
         return new NamespacedKey(AtlasItemProvider.plugin, "anvil_success_chance");
     }
 
+    public static ItemStack getEnchantedBook(int chance) {
+        ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
+        setAnvilChance(item, chance);
+        return item;
+    }
+
     public static void setAnvilChance(ItemStack item, int chance) {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
 
         meta.getPersistentDataContainer().set(getAnvilSuccessChanceKey(), PersistentDataType.INTEGER, chance);
         item.setItemMeta(meta);
+    }
+
+    /**
+     *
+     * @param item
+     * @return item's anvil chance, if anvil chance is not specified returns 100 (always successful)
+     */
+    public static int getAnvilChance(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return 100;
+
+        Integer chance = meta.getPersistentDataContainer().get(getAnvilSuccessChanceKey(), PersistentDataType.INTEGER);
+        if (chance != null) return chance;
+        return 100;
     }
 
     public static ItemStack getChanceDust(int chance) {
@@ -83,6 +112,11 @@ public class EnchantmentsAnvil implements Listener {
         setAnvilChance(item, chance);
 
         return item;
+    }
+
+    public static boolean isChanceDust(ItemStack item) {
+        return item.getItemMeta() != null && item.getType().equals(Material.SUGAR)
+                && item.getItemMeta().getPersistentDataContainer().get(getAnvilSuccessChanceKey(), PersistentDataType.INTEGER) != null;
     }
 }
 

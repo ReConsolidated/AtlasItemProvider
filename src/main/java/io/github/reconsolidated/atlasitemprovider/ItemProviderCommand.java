@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -8,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
 import java.util.UUID;
 
 public class ItemProviderCommand implements CommandExecutor {
@@ -60,6 +62,28 @@ public class ItemProviderCommand implements CommandExecutor {
                 }
             }
         }
+        if (args[0].equalsIgnoreCase("getbook")) {
+            if (sender instanceof Player) {
+                Player player = (Player) sender;
+                if (args.length == 1) {
+                    Random random = new Random();
+                    player.getInventory().addItem(EnchantmentsAnvil.getEnchantedBook(random.nextInt(94) + 5));
+                    sender.sendMessage(ChatColor.GREEN + "Received empty enchanted book with random chance.");
+                }
+                else {
+                    try {
+                        int chance = Integer.parseInt(args[1]);
+                        player.getInventory().addItem(EnchantmentsAnvil.getEnchantedBook(chance));
+                        sender.sendMessage(ChatColor.GREEN + "Received empty enchanted book.");
+                    } catch (NumberFormatException exception) {
+                        sender.sendMessage(ChatColor.RED + "Input valid number!");
+                    }
+                }
+            } else {
+                sender.sendMessage(ChatColor.RED + "Only players can use this command!");
+            }
+
+        }
         return true;
     }
 
@@ -67,5 +91,6 @@ public class ItemProviderCommand implements CommandExecutor {
         sender.sendMessage(ChatColor.AQUA + "ItemProvider help: ");
         sender.sendMessage(ChatColor.AQUA + "/itemprovider add <category> [name] - adds item from hand");
         sender.sendMessage(ChatColor.AQUA + "/itemprovider get <category> <name> - gives you item");
+        sender.sendMessage(ChatColor.AQUA + "/itemprovider getbook [chance] - gives you empty enchanted book");
     }
 }
