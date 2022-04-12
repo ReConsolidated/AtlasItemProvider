@@ -49,7 +49,7 @@ public class Upgrades {
             traitValues.add(Pair.of(Trait.TOOL_LUCK, toolLuck));
         }
 
-        Double armor = container.get(Armor.getArmorKey(), PersistentDataType.DOUBLE);
+        Double armor = Armor.getInstance().getDouble(item);
         if (armor != null) {
             traitValues.add(Pair.of(Trait.ARMOR, armor));
         }

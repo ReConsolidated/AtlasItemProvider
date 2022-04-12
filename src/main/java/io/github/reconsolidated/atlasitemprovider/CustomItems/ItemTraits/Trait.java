@@ -28,7 +28,7 @@ public enum Trait {
 
         try {
             return switch (trait) {
-                case ARMOR -> meta.getPersistentDataContainer().get(Armor.getArmorKey(), PersistentDataType.DOUBLE);
+                case ARMOR -> meta.getPersistentDataContainer().get(Armor.getInstance().getKey(), PersistentDataType.DOUBLE);
                 case BOW_DAMAGE ->  meta.getPersistentDataContainer().get(BowDamage.getBowDamageKey(), PersistentDataType.DOUBLE);
                 case CRIT_CHANCE -> meta.getPersistentDataContainer().get(CritChance.getCritChanceKey(), PersistentDataType.DOUBLE);
                 case DAMAGE -> meta.getPersistentDataContainer().get(Damage.getDamageKey(), PersistentDataType.DOUBLE);
@@ -60,7 +60,7 @@ public enum Trait {
         NamespacedKey key;
         switch (trait) {
                 case ARMOR -> {
-                    key = Armor.getArmorKey();
+                    key = Armor.getInstance().getKey();
                 }
                 case BOW_DAMAGE ->  {
                     key = BowDamage.getBowDamageKey();

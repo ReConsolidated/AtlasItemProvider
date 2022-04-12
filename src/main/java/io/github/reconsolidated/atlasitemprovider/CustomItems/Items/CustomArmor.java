@@ -19,6 +19,9 @@ import java.util.UUID;
 public class CustomArmor {
     public static ItemStack createCustomArmor(String name, Material material, double armor, int maxDurability, double magic) {
         ItemStack item = new ItemStack(material);
+        Armor.getInstance().setDouble(item, armor);
+
+
         ItemMeta meta = item.getItemMeta();
 
         meta.addAttributeModifier(Attribute.GENERIC_ARMOR,
@@ -35,7 +38,6 @@ public class CustomArmor {
                         armor, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
 
         meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
-        meta.getPersistentDataContainer().set(Armor.getArmorKey(), PersistentDataType.DOUBLE, armor);
         meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
         meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
         // todo ADD MAGIC
