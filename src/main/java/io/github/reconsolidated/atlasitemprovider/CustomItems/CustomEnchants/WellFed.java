@@ -1,0 +1,61 @@
+package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugin;
+
+public class WellFed extends CustomEnchant implements Listener {
+    private static WellFed instance = null;
+    static {
+        allEnchants.add(new WellFed());
+    }
+
+    public WellFed() {
+        super("well_fed", ChatColor.YELLOW + "" + ChatColor.BOLD + "Well-Fed");
+        if (instance == null) {
+            instance = this;
+        } else {
+            throw new RuntimeException("Attempted to create 2nd copy of WellFed Enchant (report this to developer)");
+        }
+
+        Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+
+
+    @EventHandler
+    public void onFoodChance(FoodLevelChangeEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            List<ItemStack> list = new ArrayList<>(List.of(player.getInventory().getArmorContents()));
+            list.add(player.getInventory().getItemInMainHand());
+            for (ItemStack item : player.getInventory().getArmorContents()) {
+                if (item != null && item.getItemMeta() != null) {
+                    if (get(item) > 0) {
+                        event.setCancelled(true);
+                        player.setFoodLevel(20);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+
+    public static WellFed getInstance() {
+        return instance;
+    }
+}
+
