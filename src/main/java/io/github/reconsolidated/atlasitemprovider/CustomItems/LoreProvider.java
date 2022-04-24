@@ -68,7 +68,7 @@ public class LoreProvider {
 
         result.add(Component.text(""));
 
-        for (CustomEnchant enchant : CustomEnchant.getEnchants(item)) {
+        for (CustomEnchant enchant : CustomEnchant.getEnchants(item).keySet()) {
             result.add(Component.text(ColorHelper.translate(enchant.getDisplayName() + ": " + ChatColor.WHITE + enchant.get(item))));
         }
 
