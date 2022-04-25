@@ -52,6 +52,8 @@ public abstract class CustomEnchant {
     }
 
     public Integer get(ItemStack item) {
+        if (item == null) return 0;
+        if (item.getItemMeta() == null) return 0;
         return item.getItemMeta().getPersistentDataContainer().get(getKey(), PersistentDataType.INTEGER);
     }
 

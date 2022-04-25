@@ -41,7 +41,7 @@ public class LoreProvider {
             result.add(Component.text(ColorHelper.translate(getToolLuckText(item) + toolLuck)));
         }
 
-        Double armor = container.get(Armor.getArmorKey(), PersistentDataType.DOUBLE);
+        Double armor = container.get(Armor.getInstance().getKey(), PersistentDataType.DOUBLE);
         if (armor != null) {
             result.add(Component.text(ColorHelper.translate("Armor: " + armor)));
         }
