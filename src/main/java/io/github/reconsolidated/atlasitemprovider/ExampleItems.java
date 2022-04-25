@@ -1,6 +1,10 @@
 package io.github.reconsolidated.atlasitemprovider;
 
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.ChaosPrison;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.HadeSoulTrade;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.ZeusWrath;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Items.CustomBow;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Items.CustomSword;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Items.CustomTool;
@@ -43,9 +47,13 @@ public class ExampleItems {
         config.set("chestplate_buffed", chestPlateWithKey);
 
 
+        ItemStack customSword = CustomSword.createCustomSword("&#00FF22&lExcalibur", Material.DIAMOND_SWORD,
+                7, 100, 50, 40);
+        ChaosPrison.getInstance().set(customSword, 2);
+        ZeusWrath.getInstance().set(customSword, 3);
+        HadeSoulTrade.getInstance().set(customSword, 3);
         config.set("custom_sword",
-                CustomSword.createCustomSword("&#00FF22&lExcalibur", Material.DIAMOND_SWORD,
-                        7, 100, 50, 40));
+                customSword);
 
         config.set("custom_bow",
                 CustomBow.createCustomBow("&cDangerous Bow", Material.BOW,

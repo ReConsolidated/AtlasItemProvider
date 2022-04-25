@@ -1,11 +1,12 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems;
 
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
-import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Upgrades;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -22,10 +23,8 @@ public class LoreProvider {
         ItemMeta meta = item.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        int upgradeChance = EnchantmentsAnvil.getAnvilChance(item);
-        if (upgradeChance != 100) {
-            result.add(Component.text(ColorHelper.translate("Success Chance: " + upgradeChance)));
-        }
+
+
 
         Double damage = container.get(Damage.getDamageKey(), PersistentDataType.DOUBLE);
         if (damage != null) {
@@ -42,7 +41,7 @@ public class LoreProvider {
             result.add(Component.text(ColorHelper.translate(getToolLuckText(item) + toolLuck)));
         }
 
-        Double armor = Armor.getInstance().getDouble(item);
+        Double armor = container.get(Armor.getArmorKey(), PersistentDataType.DOUBLE);
         if (armor != null) {
             result.add(Component.text(ColorHelper.translate("Armor: " + armor)));
         }
@@ -67,7 +66,11 @@ public class LoreProvider {
             result.add(Component.text(ColorHelper.translate("Upgrades: " + upgrades + "/" + Upgrades.getMaxUpgrades())));
         }
 
+        result.add(Component.text(""));
 
+        for (CustomEnchant enchant : CustomEnchant.getEnchants(item).keySet()) {
+            result.add(Component.text(ColorHelper.translate(enchant.getDisplayName() + ": " + ChatColor.WHITE + enchant.get(item))));
+        }
 
         for (int i = 0; i<result.size(); i++) {
             result.set(i, result.get(i).decoration(TextDecoration.ITALIC, false));

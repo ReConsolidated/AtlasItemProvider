@@ -58,8 +58,9 @@ public final class AtlasItemProvider extends JavaPlugin  {
     }
 
     private ItemStack named(ItemStack item, String name) {
-
-        item.getItemMeta().getPersistentDataContainer().set(nameKey, PersistentDataType.STRING, name);
+        ItemMeta meta = item.getItemMeta();
+        meta.getPersistentDataContainer().set(nameKey, PersistentDataType.STRING, name);
+        item.setItemMeta(meta);
         return item;
     }
 
