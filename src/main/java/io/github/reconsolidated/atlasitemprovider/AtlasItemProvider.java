@@ -2,10 +2,7 @@ package io.github.reconsolidated.atlasitemprovider;
 
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.BlacksmithCommand;
-import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.BowDamage;
-import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.CritChance;
-import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Durability;
-import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.HuntingLuck;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -85,11 +82,7 @@ public final class AtlasItemProvider extends JavaPlugin  {
 
         new ItemProviderCommand(this);
 
-        new Durability();
-        new CritChance();
-        new HuntingLuck();
-        new BowDamage();
-
+        ItemTrait.initTraits();
         new BlacksmithCommand();
 
         getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);

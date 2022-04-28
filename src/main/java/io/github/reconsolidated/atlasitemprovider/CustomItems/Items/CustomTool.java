@@ -28,8 +28,8 @@ public class CustomTool {
 
         meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
         meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
-        meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
-        meta.getPersistentDataContainer().set(ToolLuck.getToolLuckKey(), PersistentDataType.DOUBLE, luck);
+        meta.getPersistentDataContainer().set(Durability.getInstance().getKey(), PersistentDataType.INTEGER, maxDurability);
+        meta.getPersistentDataContainer().set(ToolLuck.getInstance().getKey(), PersistentDataType.DOUBLE, luck);
 
 
         meta.displayName(

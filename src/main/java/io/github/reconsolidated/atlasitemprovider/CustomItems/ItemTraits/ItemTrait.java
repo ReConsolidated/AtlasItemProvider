@@ -5,26 +5,43 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class ItemTrait {
-    protected static ItemTrait instance;
-    public static ItemTrait getInstance() {
-        return instance;
-    }
     public abstract NamespacedKey getKey();
 
+    private static Set<ItemTrait> traits = new HashSet<>();
 
-    public Integer getInteger(ItemStack item) {
+    public static void initTraits() {
+        traits.add(new Armor());
+        traits.add(new BowDamage());
+        traits.add(new CritChance());
+        traits.add(new Damage());
+        traits.add(new Durability());
+        traits.add(new HuntingLuck());
+        traits.add(new Rank());
+        traits.add(new ToolLuck());
+    }
+
+    public static Set<ItemTrait> getTraitsSet() {
+        return traits;
+    }
+
+
+    public Double get(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return null;
-        return meta.getPersistentDataContainer().get(getKey(), PersistentDataType.INTEGER);
+        return meta.getPersistentDataContainer().get(getKey(), PersistentDataType.DOUBLE);
     }
 
-    public void setInteger(ItemStack item, Integer value) {
+    public void set(ItemStack item, double value) {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
-        meta.getPersistentDataContainer().set(getKey(), PersistentDataType.INTEGER, value);
+        meta.getPersistentDataContainer().set(getKey(), PersistentDataType.DOUBLE, value);
         item.setItemMeta(meta);
     }
+
 
 
 }

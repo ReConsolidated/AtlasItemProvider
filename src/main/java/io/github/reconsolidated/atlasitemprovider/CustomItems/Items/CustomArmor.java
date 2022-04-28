@@ -19,7 +19,7 @@ import java.util.UUID;
 public class CustomArmor {
     public static ItemStack createCustomArmor(String name, Material material, double armor, int maxDurability, double magic) {
         ItemStack item = new ItemStack(material);
-        Armor.getInstance().setDouble(item, armor);
+        Armor.getInstance().set(item, armor);
 
 
         ItemMeta meta = item.getItemMeta();

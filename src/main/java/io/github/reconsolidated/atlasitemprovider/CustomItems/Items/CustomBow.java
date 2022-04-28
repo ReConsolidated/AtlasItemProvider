@@ -22,11 +22,11 @@ public class CustomBow {
         ItemMeta meta = item.getItemMeta();
 
         meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
-        meta.getPersistentDataContainer().set(BowDamage.getBowDamageKey(), PersistentDataType.DOUBLE, damage);
+        meta.getPersistentDataContainer().set(BowDamage.getInstance().getKey(), PersistentDataType.DOUBLE, damage);
         meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
         meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
-        meta.getPersistentDataContainer().set(CritChance.getCritChanceKey(), PersistentDataType.DOUBLE, critChance);
-        meta.getPersistentDataContainer().set(HuntingLuck.getHuntingLuckKey(), PersistentDataType.DOUBLE, huntingLuck);
+        meta.getPersistentDataContainer().set(CritChance.getInstance().getKey(), PersistentDataType.DOUBLE, critChance);
+        meta.getPersistentDataContainer().set(HuntingLuck.getInstance().getKey(), PersistentDataType.DOUBLE, huntingLuck);
 
         meta.displayName(
                 Component.text(ColorHelper.translate(name))

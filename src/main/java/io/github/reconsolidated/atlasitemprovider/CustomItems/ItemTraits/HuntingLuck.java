@@ -23,12 +23,21 @@ import java.util.Random;
 
 
 // Stats: Damage, Durability, Crit Chance, Hunting Luck
-public class HuntingLuck implements Listener {
-
+public class HuntingLuck extends ItemTrait implements Listener {
+    private static HuntingLuck instance;
     private final List<Entity> entitiesToDropMore;
+    public static HuntingLuck getInstance() {
+        return instance;
+    }
 
 
     public HuntingLuck() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            throw new RuntimeException("Attempted to create second instance of CritChance ItemTrait (this is a bug, report this to the developer)");
+        }
+
         AtlasItemProvider.plugin.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
         entitiesToDropMore = new ArrayList<>();
     }
@@ -47,7 +56,7 @@ public class HuntingLuck implements Listener {
                     ItemStack item = player.getInventory().getItemInMainHand();
                     if (item.getType() == Material.AIR) return;
                     ItemMeta meta = item.getItemMeta();
-                    Double huntingLuck = meta.getPersistentDataContainer().get(getHuntingLuckKey(), PersistentDataType.DOUBLE);
+                    Double huntingLuck = meta.getPersistentDataContainer().get(getKey(), PersistentDataType.DOUBLE);
                     if (huntingLuck != null) {
                         Random random = new Random();
                         if (random.nextInt(100) < huntingLuck) {
@@ -59,7 +68,7 @@ public class HuntingLuck implements Listener {
                 if (event.getDamager() instanceof Projectile) {
                     Projectile projectile = (Projectile) event.getDamager();
                     if (projectile.getShooter() instanceof Player) {
-                        Double huntingLuck = projectile.getPersistentDataContainer().get(getHuntingLuckKey(), PersistentDataType.DOUBLE);
+                        Double huntingLuck = projectile.getPersistentDataContainer().get(getKey(), PersistentDataType.DOUBLE);
                         if (huntingLuck != null) {
                             Random random = new Random();
                             if (random.nextInt(100) < huntingLuck) {
@@ -95,16 +104,17 @@ public class HuntingLuck implements Listener {
         if (item != null) {
             ItemMeta meta = item.getItemMeta();
             if (meta != null) {
-                Double hunterLuck = meta.getPersistentDataContainer().get(getHuntingLuckKey(), PersistentDataType.DOUBLE);
+                Double hunterLuck = meta.getPersistentDataContainer().get(getKey(), PersistentDataType.DOUBLE);
                 if (hunterLuck != null) {
-                    event.getProjectile().getPersistentDataContainer().set(getHuntingLuckKey(), PersistentDataType.DOUBLE, hunterLuck);
+                    event.getProjectile().getPersistentDataContainer().set(getKey(), PersistentDataType.DOUBLE, hunterLuck);
                 }
             }
         }
     }
 
-    public static NamespacedKey getHuntingLuckKey() {
+
+    @Override
+    public NamespacedKey getKey() {
         return new NamespacedKey(AtlasItemProvider.plugin, "item_hunting_luck");
     }
-
 }

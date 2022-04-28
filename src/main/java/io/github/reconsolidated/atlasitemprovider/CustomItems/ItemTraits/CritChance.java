@@ -19,8 +19,23 @@ import java.util.Random;
 
 
 // Stats: Damage, Durability, Crit Chance, Hunting Luck
-public class CritChance implements Listener {
+public class CritChance extends ItemTrait implements Listener {
+    private static CritChance instance;
+
+    public static CritChance getInstance() {
+        return instance;
+    }
+
+
     public CritChance() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            throw new RuntimeException("Attempted to create second instance of CritChance ItemTrait (this is a bug, report this to the developer)");
+        }
+
+
+
         AtlasItemProvider.plugin.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
     }
 
@@ -34,8 +49,7 @@ public class CritChance implements Listener {
             Player player = (Player) event.getDamager();
             ItemStack item = player.getInventory().getItemInMainHand();
             if (item.getType() == Material.AIR) return;
-            ItemMeta meta = item.getItemMeta();
-            Double critChance = meta.getPersistentDataContainer().get(getCritChanceKey(), PersistentDataType.DOUBLE);
+            Double critChance = get(item);
             if (critChance != null) {
                 Random random = new Random();
                 if (random.nextInt(100) < critChance) {
@@ -49,7 +63,7 @@ public class CritChance implements Listener {
             Projectile projectile = (Projectile) event.getDamager();
             if (projectile.getShooter() instanceof Player) {
                 Player player = (Player) projectile.getShooter();
-                Double critChance = projectile.getPersistentDataContainer().get(getCritChanceKey(), PersistentDataType.DOUBLE);
+                Double critChance = projectile.getPersistentDataContainer().get(getKey(), PersistentDataType.DOUBLE);
                 if (critChance != null) {
                     Random random = new Random();
                     if (random.nextInt(100) < critChance) {
@@ -65,18 +79,15 @@ public class CritChance implements Listener {
     public void onShoot(EntityShootBowEvent event) {
         ItemStack item = event.getBow();
         if (item != null) {
-            ItemMeta meta = item.getItemMeta();
-            if (meta != null) {
-                Double chance = meta.getPersistentDataContainer().get(getCritChanceKey(), PersistentDataType.DOUBLE);
-                if (chance != null) {
-                    event.getProjectile().getPersistentDataContainer().set(getCritChanceKey(), PersistentDataType.DOUBLE, chance);
-                }
+            Double chance = get(item);
+            if (chance != null) {
+                event.getProjectile().getPersistentDataContainer().set(getKey(), PersistentDataType.DOUBLE, chance);
             }
         }
     }
 
-    public static NamespacedKey getCritChanceKey() {
+    @Override
+    public NamespacedKey getKey() {
         return new NamespacedKey(AtlasItemProvider.plugin, "item_crit_chance");
     }
-
 }

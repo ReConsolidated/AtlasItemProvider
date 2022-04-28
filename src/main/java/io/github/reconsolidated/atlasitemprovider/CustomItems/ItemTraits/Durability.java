@@ -12,9 +12,20 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-public class Durability implements Listener {
+public class Durability extends ItemTrait implements Listener {
+    private static Durability instance;
+
+    public static Durability getInstance() {
+        return instance;
+    }
+
 
     public Durability() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            throw new RuntimeException("Attempted to create second instance of Durability ItemTrait (this is a bug, report this to the developer)");
+        }
         AtlasItemProvider.plugin.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
     }
 
@@ -52,5 +63,10 @@ public class Durability implements Listener {
 
     public static NamespacedKey getDurabilityKey() {
         return new NamespacedKey(AtlasItemProvider.plugin, "current_item_durability");
+    }
+
+    @Override
+    public NamespacedKey getKey() {
+        return getMaxDurabilityKey();
     }
 }

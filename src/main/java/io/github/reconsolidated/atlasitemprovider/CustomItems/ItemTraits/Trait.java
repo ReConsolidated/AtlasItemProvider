@@ -29,18 +29,16 @@ public enum Trait {
         try {
             return switch (trait) {
                 case ARMOR -> meta.getPersistentDataContainer().get(Armor.getInstance().getKey(), PersistentDataType.DOUBLE);
-                case BOW_DAMAGE ->  meta.getPersistentDataContainer().get(BowDamage.getBowDamageKey(), PersistentDataType.DOUBLE);
-                case CRIT_CHANCE -> meta.getPersistentDataContainer().get(CritChance.getCritChanceKey(), PersistentDataType.DOUBLE);
-                case DAMAGE -> meta.getPersistentDataContainer().get(Damage.getDamageKey(), PersistentDataType.DOUBLE);
+                case BOW_DAMAGE ->  meta.getPersistentDataContainer().get(BowDamage.getInstance().getKey(), PersistentDataType.DOUBLE);
+                case CRIT_CHANCE -> meta.getPersistentDataContainer().get(CritChance.getInstance().getKey(), PersistentDataType.DOUBLE);
+                case DAMAGE -> meta.getPersistentDataContainer().get(Damage.getInstance().getKey(), PersistentDataType.DOUBLE);
                 case DURABILITY -> (double) meta.getPersistentDataContainer().get(Durability.getDurabilityKey(), PersistentDataType.INTEGER);
-                case HUNTING_LUCK -> meta.getPersistentDataContainer().get(HuntingLuck.getHuntingLuckKey(), PersistentDataType.DOUBLE);
-                case TOOL_LUCK -> meta.getPersistentDataContainer().get(ToolLuck.getToolLuckKey(), PersistentDataType.DOUBLE);
+                case HUNTING_LUCK -> meta.getPersistentDataContainer().get(HuntingLuck.getInstance().getKey(), PersistentDataType.DOUBLE);
+                case TOOL_LUCK -> meta.getPersistentDataContainer().get(ToolLuck.getInstance().getKey(), PersistentDataType.DOUBLE);
             };
         } catch (NullPointerException exception) {
             return null;
         }
-
-
     }
 
     /**
@@ -63,22 +61,22 @@ public enum Trait {
                     key = Armor.getInstance().getKey();
                 }
                 case BOW_DAMAGE ->  {
-                    key = BowDamage.getBowDamageKey();
+                    key = BowDamage.getInstance().getKey();
                 }
                 case CRIT_CHANCE -> {
-                    key = CritChance.getCritChanceKey();
+                    key = CritChance.getInstance().getKey();
                 }
                 case DAMAGE -> {
-                    key = Damage.getDamageKey();
+                    key = Damage.getInstance().getKey();
                 }
                 case DURABILITY -> {
-                    key = Durability.getDurabilityKey();
+                    key = Durability.getInstance().getKey();
                 }
                 case HUNTING_LUCK -> {
-                    key = HuntingLuck.getHuntingLuckKey();
+                    key = HuntingLuck.getInstance().getKey();
                 }
                 case TOOL_LUCK -> {
-                    key = ToolLuck.getToolLuckKey();
+                    key = ToolLuck.getInstance().getKey();
                 }
             default -> throw new IllegalStateException("Unexpected value: " + trait);
         }

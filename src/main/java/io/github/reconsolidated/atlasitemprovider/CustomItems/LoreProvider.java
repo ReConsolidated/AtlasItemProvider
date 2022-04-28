@@ -26,17 +26,17 @@ public class LoreProvider {
 
 
 
-        Double damage = container.get(Damage.getDamageKey(), PersistentDataType.DOUBLE);
+        Double damage = container.get(Damage.getInstance().getKey(), PersistentDataType.DOUBLE);
         if (damage != null) {
             result.add(Component.text(ColorHelper.translate("Damage: " + damage)));
         }
 
-        Double bowDamage = container.get(BowDamage.getBowDamageKey(), PersistentDataType.DOUBLE);
+        Double bowDamage = container.get(BowDamage.getInstance().getKey(), PersistentDataType.DOUBLE);
         if (bowDamage != null) {
             result.add(Component.text(ColorHelper.translate("Bow Damage: " + bowDamage)));
         }
 
-        Double toolLuck = container.get(ToolLuck.getToolLuckKey(), PersistentDataType.DOUBLE);
+        Double toolLuck = container.get(ToolLuck.getInstance().getKey(), PersistentDataType.DOUBLE);
         if (toolLuck != null) {
             result.add(Component.text(ColorHelper.translate(getToolLuckText(item) + toolLuck)));
         }
@@ -46,12 +46,12 @@ public class LoreProvider {
             result.add(Component.text(ColorHelper.translate("Armor: " + armor)));
         }
 
-        Double critChance = container.get(CritChance.getCritChanceKey(), PersistentDataType.DOUBLE);
+        Double critChance = container.get(CritChance.getInstance().getKey(), PersistentDataType.DOUBLE);
         if (critChance != null) {
             result.add(Component.text(ColorHelper.translate("Crit Chance: " + critChance)));
         }
 
-        Double huntLuck = container.get(HuntingLuck.getHuntingLuckKey(), PersistentDataType.DOUBLE);
+        Double huntLuck = container.get(HuntingLuck.getInstance().getKey(), PersistentDataType.DOUBLE);
         if (huntLuck != null) {
             result.add(Component.text(ColorHelper.translate("Hunting Luck: " + huntLuck)));
         }
@@ -65,6 +65,11 @@ public class LoreProvider {
         if (upgrades != null) {
             result.add(Component.text(ColorHelper.translate("Upgrades: " + upgrades + "/" + Upgrades.getMaxUpgrades())));
         }
+
+        result.add(Component.text(""));
+        int rank = (int) (double) Rank.getInstance().get(item);
+        result.add(Component.text(ColorHelper.translate("Rank: " + rank)));
+
 
         result.add(Component.text(""));
 

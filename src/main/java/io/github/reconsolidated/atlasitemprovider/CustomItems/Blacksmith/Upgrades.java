@@ -34,39 +34,39 @@ public class Upgrades {
 
         List<Pair<Trait, Double>> traitValues = new ArrayList<>();
 
-        Double damage = container.get(Damage.getDamageKey(), PersistentDataType.DOUBLE);
+        Double damage = container.get(Damage.getInstance().getKey(), PersistentDataType.DOUBLE);
         if (damage != null) {
             traitValues.add(Pair.of(Trait.DAMAGE, damage));
         }
 
-        Double bowDamage = container.get(BowDamage.getBowDamageKey(), PersistentDataType.DOUBLE);
+        Double bowDamage = container.get(BowDamage.getInstance().getKey(), PersistentDataType.DOUBLE);
         if (bowDamage != null) {
             traitValues.add(Pair.of(Trait.BOW_DAMAGE, bowDamage));
         }
 
-        Double toolLuck = container.get(ToolLuck.getToolLuckKey(), PersistentDataType.DOUBLE);
+        Double toolLuck = container.get(ToolLuck.getInstance().getKey(), PersistentDataType.DOUBLE);
         if (toolLuck != null) {
             traitValues.add(Pair.of(Trait.TOOL_LUCK, toolLuck));
         }
 
-        Double armor = Armor.getInstance().getDouble(item);
+        Double armor = Armor.getInstance().get(item);
         if (armor != null) {
             traitValues.add(Pair.of(Trait.ARMOR, armor));
         }
 
-        Double critChance = container.get(CritChance.getCritChanceKey(), PersistentDataType.DOUBLE);
+        Double critChance = CritChance.getInstance().get(item);
         if (critChance != null) {
             traitValues.add(Pair.of(Trait.CRIT_CHANCE, critChance));
         }
 
-        Double huntLuck = container.get(HuntingLuck.getHuntingLuckKey(), PersistentDataType.DOUBLE);
+        Double huntLuck = HuntingLuck.getInstance().get(item);
         if (huntLuck != null) {
             traitValues.add(Pair.of(Trait.HUNTING_LUCK, huntLuck));
         }
 
-        Integer durability = container.get(Durability.getDurabilityKey(), PersistentDataType.INTEGER);
+        Double durability = Durability.getInstance().get(item);
         if (durability != null) {
-            traitValues.add(Pair.of(Trait.DURABILITY, (double) durability));
+            traitValues.add(Pair.of(Trait.DURABILITY, durability));
         }
 
 

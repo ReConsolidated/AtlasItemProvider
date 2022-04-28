@@ -14,8 +14,21 @@ import org.bukkit.persistence.PersistentDataType;
 
 
 // Stats: Damage, Durability, Crit Chance, Hunting Luck
-public class BowDamage implements Listener {
+public class BowDamage extends ItemTrait implements Listener {
+    private static BowDamage instance;
+
+    public static BowDamage getInstance() {
+        return instance;
+    }
+
     public BowDamage() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            throw new RuntimeException("Attempted to create second instance of BowDamage ItemTrait (this is a bug, report this to the developer)");
+        }
+
+
         AtlasItemProvider.plugin.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
     }
 
@@ -24,7 +37,7 @@ public class BowDamage implements Listener {
         if (event.getDamager() instanceof Projectile) {
             Projectile projectile = (Projectile) event.getDamager();
             if (projectile.getShooter() instanceof Player) {
-                Double bonusDamage = projectile.getPersistentDataContainer().get(getBowDamageKey(), PersistentDataType.DOUBLE);
+                Double bonusDamage = projectile.getPersistentDataContainer().get(getKey(), PersistentDataType.DOUBLE);
                 if (bonusDamage != null) {
                     event.setDamage(bonusDamage);
                 }
@@ -38,17 +51,17 @@ public class BowDamage implements Listener {
         if (item != null) {
             ItemMeta meta = item.getItemMeta();
             if (meta != null) {
-                Double damage = meta.getPersistentDataContainer().get(getBowDamageKey(), PersistentDataType.DOUBLE);
+                Double damage = meta.getPersistentDataContainer().get(getKey(), PersistentDataType.DOUBLE);
                 if (damage != null) {
                     damage *= event.getForce();
-                    event.getProjectile().getPersistentDataContainer().set(getBowDamageKey(), PersistentDataType.DOUBLE, damage);
+                    event.getProjectile().getPersistentDataContainer().set(getKey(), PersistentDataType.DOUBLE, damage);
                 }
             }
         }
     }
 
-    public static NamespacedKey getBowDamageKey() {
+    @Override
+    public NamespacedKey getKey() {
         return new NamespacedKey(AtlasItemProvider.plugin, "item_bow_damage");
     }
-
 }
