@@ -18,9 +18,6 @@ public class ExplosiveArrows extends CustomEnchant implements Listener {
 
     private final Map<UUID, ItemStack> arrowBows;
 
-    static {
-        allEnchants.add(new ExplosiveArrows());
-    }
 
     public ExplosiveArrows() {
         super("explosive_arrows", ChatColor.YELLOW + "" + ChatColor.BOLD + "Explosive Arrows");
@@ -29,6 +26,8 @@ public class ExplosiveArrows extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of ExplosiveArrows Enchant (report this to developer)");
         }
+
+        setAcceptsBows(true);
 
         arrowBows = new HashMap<>();
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);

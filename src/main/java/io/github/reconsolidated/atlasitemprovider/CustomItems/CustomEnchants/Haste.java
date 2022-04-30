@@ -11,9 +11,7 @@ import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugi
 
 public class Haste extends CustomEnchant {
     private static Haste instance = null;
-    static {
-        allEnchants.add(new Haste());
-    }
+
 
     public Haste() {
         super("haste", ChatColor.YELLOW + "" + ChatColor.BOLD + "Haste");
@@ -22,6 +20,10 @@ public class Haste extends CustomEnchant {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Haste Enchant (report this to developer)");
         }
+
+
+        setAcceptsTools(true);
+
 
         Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {

@@ -8,9 +8,6 @@ public class Unbreakable extends CustomEnchant {
     private static Unbreakable instance = null;
     private final int BASE_CHANCE = 10;
 
-    static {
-        allEnchants.add(new Unbreakable());
-    }
 
     public Unbreakable() {
         super("unbreakable", ChatColor.YELLOW + "" + ChatColor.BOLD + "Unbreakable");

@@ -17,9 +17,7 @@ import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugi
 
 public class StrongWilled  extends CustomEnchant implements Listener {
     private static StrongWilled instance = null;
-    static {
-        allEnchants.add(new StrongWilled());
-    }
+
 
     public StrongWilled() {
         super("strong_willed", ChatColor.YELLOW + "" + ChatColor.BOLD + "Strong Willed");
@@ -28,6 +26,9 @@ public class StrongWilled  extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of StrongWilled Enchant (report this to developer)");
         }
+
+        setAcceptsSwords(true);
+        setAcceptsAxes(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }

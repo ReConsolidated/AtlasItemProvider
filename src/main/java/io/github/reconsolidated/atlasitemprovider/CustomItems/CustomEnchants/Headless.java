@@ -15,9 +15,7 @@ import java.util.Random;
 
 public class Headless extends CustomEnchant implements Listener {
     private static Headless instance = null;
-    static {
-        allEnchants.add(new Headless());
-    }
+
 
     public Headless() {
         super("headless", ChatColor.YELLOW + "" + ChatColor.BOLD + "Headless");

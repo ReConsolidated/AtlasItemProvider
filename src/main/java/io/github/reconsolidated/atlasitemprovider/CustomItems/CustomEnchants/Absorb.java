@@ -12,10 +12,6 @@ import org.bukkit.inventory.ItemStack;
 public class Absorb extends CustomEnchant implements Listener {
     private static Absorb instance = null;
 
-    static {
-        allEnchants.add(new Absorb());
-    }
-
     public Absorb() {
         super("absorb", ChatColor.YELLOW + "" + ChatColor.BOLD + "Absorb");
         if (instance == null) {
@@ -23,6 +19,8 @@ public class Absorb extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Absorb Enchant (report this to developer)");
         }
+
+        setAcceptsSwords(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
     }

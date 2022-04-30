@@ -11,9 +11,7 @@ import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugi
 
 public class GlowingAura extends CustomEnchant {
     private static GlowingAura instance = null;
-    static {
-        allEnchants.add(new GlowingAura());
-    }
+
 
     public GlowingAura() {
         super("glowing_aura", ChatColor.YELLOW + "" + ChatColor.BOLD + "Glowing Aura");
@@ -22,6 +20,8 @@ public class GlowingAura extends CustomEnchant {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of GlowingAura Enchant (report this to developer)");
         }
+
+        setAcceptsHelmets(true);
 
         Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {

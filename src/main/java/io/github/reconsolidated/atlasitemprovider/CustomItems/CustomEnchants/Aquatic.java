@@ -16,9 +16,6 @@ import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugi
 
 public class Aquatic extends CustomEnchant {
     private static Aquatic instance = null;
-    static {
-        allEnchants.add(new Aquatic());
-    }
 
     public Aquatic() {
         super("aquatic", ChatColor.YELLOW + "" + ChatColor.BOLD + "Aquatic");
@@ -27,6 +24,8 @@ public class Aquatic extends CustomEnchant {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Aquatic Enchant (report this to developer)");
         }
+
+        setAcceptsHelmets(true);
 
         Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {

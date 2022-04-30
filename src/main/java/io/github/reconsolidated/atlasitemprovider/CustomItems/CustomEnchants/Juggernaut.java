@@ -12,9 +12,6 @@ import java.util.UUID;
 public class Juggernaut extends CustomEnchant {
     private static Juggernaut instance = null;
 
-    static {
-        allEnchants.add(new Juggernaut());
-    }
 
     public Juggernaut() {
         super("juggernaut", ChatColor.YELLOW + "" + ChatColor.BOLD + "Juggernaut");
@@ -23,6 +20,8 @@ public class Juggernaut extends CustomEnchant {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Juggernaut Enchant (report this to developer)");
         }
+
+        setAcceptsArmors(true);
     }
 
     @Override

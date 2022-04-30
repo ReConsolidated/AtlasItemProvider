@@ -13,9 +13,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ZeusWrath extends CustomEnchant implements Listener {
     private static ZeusWrath instance = null;
-    static {
-        allEnchants.add(new ZeusWrath());
-    }
+
 
     public ZeusWrath() {
         super("zeus_wrath", ChatColor.YELLOW + "" + ChatColor.BOLD + "Zeus's Wrath");

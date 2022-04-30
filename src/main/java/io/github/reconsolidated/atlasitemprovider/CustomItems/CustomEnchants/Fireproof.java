@@ -1,28 +1,18 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
-import dev.simplix.plugins.atlascoredata.AtlasCoreDataAPI;
-import io.papermc.paper.event.entity.EntityDamageItemEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugin;
 
 public class Fireproof extends CustomEnchant implements Listener {
     private static Fireproof instance = null;
-    static {
-        allEnchants.add(new Fireproof());
-    }
+
 
     public Fireproof() {
         super("fireproof", ChatColor.YELLOW + "" + ChatColor.BOLD + "Fireproof");
@@ -31,6 +21,12 @@ public class Fireproof extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Fireproof Enchant (report this to developer)");
         }
+
+        setAcceptsArmors(true);
+        setAcceptsSwords(true);
+        setAcceptsBows(true);
+        setAcceptsGloves(true);
+        setAcceptsHoes(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }

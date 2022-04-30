@@ -14,9 +14,6 @@ import java.util.UUID;
 
 public class HadeSoulTrade extends CustomEnchant implements Listener {
     private static HadeSoulTrade instance = null;
-    static {
-        allEnchants.add(new HadeSoulTrade());
-    }
 
     public HadeSoulTrade() {
         super("hade_soul_trade", ChatColor.YELLOW + "" + ChatColor.BOLD + "Hade's Soul Trade");

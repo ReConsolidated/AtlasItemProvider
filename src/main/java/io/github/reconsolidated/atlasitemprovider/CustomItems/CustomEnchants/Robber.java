@@ -18,9 +18,7 @@ import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugi
 
 public class Robber extends CustomEnchant implements Listener {
     private static Robber instance = null;
-    static {
-        allEnchants.add(new Robber());
-    }
+
 
     public Robber() {
         super("robber", ChatColor.YELLOW + "" + ChatColor.BOLD + "Robber");
@@ -29,6 +27,8 @@ public class Robber extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Robber Enchant (report this to developer)");
         }
+
+        setAcceptsSwords(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }

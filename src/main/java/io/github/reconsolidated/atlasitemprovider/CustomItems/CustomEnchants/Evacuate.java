@@ -16,9 +16,6 @@ import java.util.Random;
 public class Evacuate extends CustomEnchant implements Listener {
     private static Evacuate instance = null;
 
-    static {
-        allEnchants.add(new Evacuate());
-    }
 
     public Evacuate() {
         super("evacuate", ChatColor.YELLOW + "" + ChatColor.BOLD + "Evacuate");
@@ -27,6 +24,8 @@ public class Evacuate extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Evacuate Enchant (report this to developer)");
         }
+
+        setAcceptsArmors(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
     }

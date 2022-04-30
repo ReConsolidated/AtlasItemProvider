@@ -7,9 +7,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class Destruction extends CustomEnchant {
     private static Destruction instance = null;
-    static {
-        allEnchants.add(new Destruction());
-    }
 
     public Destruction() {
         super("destruction", ChatColor.YELLOW + "" + ChatColor.BOLD + "Destruction");
@@ -18,6 +15,8 @@ public class Destruction extends CustomEnchant {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Destruction Enchant (report this to developer)");
         }
+
+        setAcceptsTools(true);
 
   }
 

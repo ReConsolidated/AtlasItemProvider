@@ -15,10 +15,6 @@ import java.util.List;
 public class Antigravity extends CustomEnchant implements Listener {
     private static Antigravity instance = null;
 
-    static {
-        allEnchants.add(new Antigravity());
-    }
-
     public Antigravity() {
         super("antigravity", ChatColor.YELLOW + "" + ChatColor.BOLD + "Antigravity");
         if (instance == null) {
@@ -27,6 +23,7 @@ public class Antigravity extends CustomEnchant implements Listener {
             throw new RuntimeException("Attempted to create 2nd copy of Antigravity Enchant (report this to developer)");
         }
 
+        setAcceptsBoots(true);
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
 
     }

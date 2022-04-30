@@ -23,7 +23,6 @@ public class Forge extends CustomEnchant implements Listener {
     private static final Map<Material, Material> oreToIngotMap = new HashMap<>();
 
     static {
-        allEnchants.add(new Forge());
         oreToIngotMap.put(Material.IRON_ORE, Material.IRON_INGOT);
         oreToIngotMap.put(Material.DEEPSLATE_IRON_ORE, Material.IRON_INGOT);
         oreToIngotMap.put(Material.GOLD_ORE, Material.GOLD_INGOT);
@@ -43,6 +42,8 @@ public class Forge extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of StrongWilled Enchant (report this to developer)");
         }
+
+        setAcceptsPickaxes(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }

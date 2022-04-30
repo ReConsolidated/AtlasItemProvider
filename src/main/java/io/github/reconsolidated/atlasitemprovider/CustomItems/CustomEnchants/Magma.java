@@ -26,9 +26,6 @@ public class Magma extends CustomEnchant implements Listener {
 
     private final Map<UUID, ItemStack> arrowBows;
 
-    static {
-        allEnchants.add(new Magma());
-    }
 
     public Magma() {
         super("magma", ChatColor.YELLOW + "" + ChatColor.BOLD + "Magma");
@@ -38,6 +35,7 @@ public class Magma extends CustomEnchant implements Listener {
             throw new RuntimeException("Attempted to create 2nd copy of Magma Enchant (report this to developer)");
         }
 
+        setAcceptsBoots(true);
         arrowBows = new HashMap<>();
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
 

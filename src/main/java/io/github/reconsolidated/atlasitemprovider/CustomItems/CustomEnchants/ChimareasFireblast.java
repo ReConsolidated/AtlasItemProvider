@@ -17,9 +17,6 @@ public class ChimareasFireblast extends CustomEnchant implements Listener {
     private static ChimareasFireblast instance = null;
     private final Map<UUID, ItemStack> projectileBows = new HashMap<>();
 
-    static {
-        allEnchants.add(new ChimareasFireblast());
-    }
 
     public ChimareasFireblast() {
         super("chimareas_fireblast", ChatColor.YELLOW + "" + ChatColor.BOLD + "Chimareas Fireblast");

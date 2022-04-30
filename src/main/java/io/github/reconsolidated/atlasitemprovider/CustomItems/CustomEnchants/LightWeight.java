@@ -16,9 +16,7 @@ import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugi
 
 public class LightWeight extends CustomEnchant implements Listener {
     private static LightWeight instance = null;
-    static {
-        allEnchants.add(new LightWeight());
-    }
+
 
     public LightWeight() {
         super("light_weight", ChatColor.YELLOW + "" + ChatColor.BOLD + "Lightweight");
@@ -27,6 +25,8 @@ public class LightWeight extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of LightWeight Enchant (report this to developer)");
         }
+
+        setAcceptsSwords(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }

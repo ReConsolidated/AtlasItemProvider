@@ -14,9 +14,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class ChaosPrison extends CustomEnchant implements Listener {
     private static ChaosPrison instance = null;
-    static {
-        allEnchants.add(new ChaosPrison());
-    }
 
     public ChaosPrison() {
         super("chaos_prison", ChatColor.YELLOW + "" + ChatColor.BOLD + "Chaos's Prison");

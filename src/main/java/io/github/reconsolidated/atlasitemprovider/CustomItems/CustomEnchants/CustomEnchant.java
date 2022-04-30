@@ -37,6 +37,12 @@ public abstract class CustomEnchant {
     private boolean acceptsHelmets;
     @Setter(AccessLevel.PROTECTED)
     private boolean acceptsArmors;
+    @Setter(AccessLevel.PROTECTED)
+    private boolean acceptsChestplates;
+    @Setter(AccessLevel.PROTECTED)
+    private boolean acceptsTools;
+    @Setter(AccessLevel.PROTECTED)
+    private boolean acceptsGloves;
 
     public CustomEnchant(String name, String displayName) {
         this.name = name;
@@ -96,10 +102,13 @@ public abstract class CustomEnchant {
             return acceptsSwords;
         }
         if (item.getType().toString().contains("PICKAXE")) {
-            return acceptsPickaxes;
+            return acceptsPickaxes || acceptsTools;
         }
         if (item.getType().toString().contains("AXE")) {
-            return acceptsAxes;
+            return acceptsAxes || acceptsTools;
+        }
+        if (item.getType().toString().contains("SHOVEL")) {
+            return acceptsTools;
         }
         if (item.getType() == Material.BOW) {
             return acceptsBows;
@@ -114,11 +123,48 @@ public abstract class CustomEnchant {
             return acceptsHelmets || acceptsArmors;
         }
         if (item.getType().toString().contains("CHESTPLATE")) {
-            return acceptsArmors;
+            return acceptsArmors || acceptsChestplates;
         }
         if (item.getType().toString().contains("LEGGINGS")) {
             return acceptsArmors;
         }
         return false;
+    }
+
+    public static void init() {
+        allEnchants.add(new Absorb());
+        allEnchants.add(new AchillesHeel());
+        allEnchants.add(new Antigravity());
+        allEnchants.add(new Aquatic());
+        allEnchants.add(new Bully());
+        allEnchants.add(new ChaosPrison());
+        allEnchants.add(new ChimareasFireblast());
+        allEnchants.add(new CronusCropduster());
+        allEnchants.add(new DarkKnight());
+        allEnchants.add(new Destruction());
+        allEnchants.add(new Evacuate());
+        allEnchants.add(new ExplosiveArrows());
+        allEnchants.add(new Fireproof());
+        allEnchants.add(new Forge());
+        allEnchants.add(new GlowingAura());
+        allEnchants.add(new GuardianAngel());
+        allEnchants.add(new HadeSoulTrade());
+        allEnchants.add(new Haste());
+        allEnchants.add(new Headless());
+        allEnchants.add(new Juggernaut());
+        allEnchants.add(new LightsOut());
+        allEnchants.add(new LightWeight());
+        allEnchants.add(new Magma());
+        allEnchants.add(new MedusaMadness());
+        allEnchants.add(new PoseidonCurse());
+        allEnchants.add(new Robber());
+        allEnchants.add(new StrongWilled());
+        allEnchants.add(new Telepathy());
+        allEnchants.add(new Thief());
+        allEnchants.add(new Unbreakable());
+        allEnchants.add(new WellFed());
+        allEnchants.add(new Wizard());
+        allEnchants.add(new ZeusWrath());
+
     }
 }

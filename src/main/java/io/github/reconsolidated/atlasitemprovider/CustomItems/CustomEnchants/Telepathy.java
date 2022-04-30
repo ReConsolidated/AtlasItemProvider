@@ -17,9 +17,6 @@ import java.util.Map;
 public class Telepathy extends CustomEnchant implements Listener {
     private static Telepathy instance = null;
 
-    static {
-        allEnchants.add(new Telepathy());
-    }
 
     public Telepathy() {
         super("telepathy", ChatColor.YELLOW + "" + ChatColor.BOLD + "Telepathy");
@@ -28,6 +25,8 @@ public class Telepathy extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Telepathy Enchant (report this to developer)");
         }
+
+        setAcceptsTools(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
     }

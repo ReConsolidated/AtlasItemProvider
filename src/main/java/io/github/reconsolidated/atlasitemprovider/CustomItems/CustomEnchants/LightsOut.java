@@ -17,9 +17,7 @@ import java.util.Random;
 
 public class LightsOut extends CustomEnchant implements Listener {
     private static LightsOut instance = null;
-    static {
-        allEnchants.add(new LightsOut());
-    }
+
 
     public LightsOut() {
         super("lights_out", ChatColor.YELLOW + "" + ChatColor.BOLD + "Lights Out");
@@ -28,6 +26,8 @@ public class LightsOut extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of LightsOut Enchant (report this to developer)");
         }
+
+        setAcceptsSwords(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
     }

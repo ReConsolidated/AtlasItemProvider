@@ -18,9 +18,6 @@ public class CronusCropduster extends CustomEnchant implements Listener {
     private static CronusCropduster instance = null;
     private final int BASE_CHANCE = 10;
 
-    static {
-        allEnchants.add(new CronusCropduster());
-    }
 
     public CronusCropduster() {
         super("cronus_cropduster", ChatColor.YELLOW + "" + ChatColor.BOLD + "Poseidon's Curse");

@@ -15,9 +15,7 @@ import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugi
 
 public class WellFed extends CustomEnchant implements Listener {
     private static WellFed instance = null;
-    static {
-        allEnchants.add(new WellFed());
-    }
+
 
     public WellFed() {
         super("well_fed", ChatColor.YELLOW + "" + ChatColor.BOLD + "Well-Fed");
@@ -26,6 +24,8 @@ public class WellFed extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of WellFed Enchant (report this to developer)");
         }
+
+        setAcceptsChestplates(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }

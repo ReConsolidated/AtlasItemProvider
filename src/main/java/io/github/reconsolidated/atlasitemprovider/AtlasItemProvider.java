@@ -2,6 +2,7 @@ package io.github.reconsolidated.atlasitemprovider;
 
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.BlacksmithCommand;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.Style;
@@ -83,6 +84,7 @@ public final class AtlasItemProvider extends JavaPlugin  {
         new ItemProviderCommand(this);
 
         ItemTrait.initTraits();
+        CustomEnchant.init();
         new BlacksmithCommand();
 
         getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);

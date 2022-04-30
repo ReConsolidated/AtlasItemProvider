@@ -17,9 +17,6 @@ import java.util.Map;
 public class Wizard extends CustomEnchant implements Listener {
     private static Wizard instance = null;
 
-    static {
-        allEnchants.add(new Wizard());
-    }
 
     public Wizard() {
         super("wizard", ChatColor.YELLOW + "" + ChatColor.BOLD + "Wizard");
@@ -28,11 +25,10 @@ public class Wizard extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Wizard Enchant (report this to developer)");
         }
-        setAcceptsSwords(true);
-        setAcceptsBows(true);
         setAcceptsPickaxes(true);
         setAcceptsAxes(true);
         setAcceptsHoes(true);
+
 
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
     }

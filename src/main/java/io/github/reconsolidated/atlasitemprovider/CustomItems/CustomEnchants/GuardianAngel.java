@@ -15,9 +15,7 @@ import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugi
 
 public class GuardianAngel extends CustomEnchant implements Listener {
     private static GuardianAngel instance = null;
-    static {
-        allEnchants.add(new GuardianAngel());
-    }
+
 
     public GuardianAngel() {
         super("guardian_angel", ChatColor.YELLOW + "" + ChatColor.BOLD + "Guardian Angel");
@@ -27,6 +25,7 @@ public class GuardianAngel extends CustomEnchant implements Listener {
             throw new RuntimeException("Attempted to create 2nd copy of GuardianAngel Enchant (report this to developer)");
         }
 
+        setAcceptsChestplate(true);
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

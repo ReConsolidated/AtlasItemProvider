@@ -18,9 +18,6 @@ public class PoseidonCurse extends CustomEnchant implements Listener {
     private static PoseidonCurse instance = null;
     private final int BASE_CHANCE = 10;
 
-    static {
-        allEnchants.add(new PoseidonCurse());
-    }
 
     public PoseidonCurse() {
         super("poseidon_curse", ChatColor.YELLOW + "" + ChatColor.BOLD + "Poseidon's Curse");

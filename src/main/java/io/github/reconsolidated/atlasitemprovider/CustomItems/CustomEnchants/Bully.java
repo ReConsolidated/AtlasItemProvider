@@ -19,9 +19,7 @@ import java.util.Random;
 
 public class Bully extends CustomEnchant implements Listener {
     private static Bully instance = null;
-    static {
-        allEnchants.add(new Bully());
-    }
+
 
     public Bully() {
         super("bully", ChatColor.YELLOW + "" + ChatColor.BOLD + "Bully");
@@ -30,6 +28,9 @@ public class Bully extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Bully Enchant (report this to developer)");
         }
+
+        setAcceptsAxes(true);
+        setAcceptsGloves(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
 

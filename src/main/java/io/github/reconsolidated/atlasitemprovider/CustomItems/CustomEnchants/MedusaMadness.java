@@ -23,11 +23,6 @@ public class MedusaMadness extends CustomEnchant implements Listener {
     private final Map<UUID, ItemStack> projectileBows = new HashMap<>();
 
 
-
-    static {
-        allEnchants.add(new MedusaMadness());
-    }
-
     public MedusaMadness() {
         super("medusa_madness", ChatColor.YELLOW + "" + ChatColor.BOLD + "Achilles Heel");
         if (instance == null) {

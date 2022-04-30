@@ -12,9 +12,6 @@ import org.bukkit.event.entity.EntityDeathEvent;
 public class Thief extends CustomEnchant implements Listener {
     private static Thief instance = null;
 
-    static {
-        allEnchants.add(new Thief());
-    }
 
     public Thief() {
         super("thief", ChatColor.YELLOW + "" + ChatColor.BOLD + "Thief");
@@ -23,6 +20,8 @@ public class Thief extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Thief Enchant (report this to developer)");
         }
+
+        setAcceptsSwords(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
     }

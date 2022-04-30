@@ -18,9 +18,6 @@ public class AchillesHeel extends CustomEnchant implements Listener {
     private static AchillesHeel instance = null;
     private final int BASE_CHANCE = 10;
 
-    static {
-        allEnchants.add(new AchillesHeel());
-    }
 
     public AchillesHeel() {
         super("achilles_heel", ChatColor.YELLOW + "" + ChatColor.BOLD + "Achilles Heel");

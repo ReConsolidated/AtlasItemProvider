@@ -19,10 +19,6 @@ public class DarkKnight extends CustomEnchant implements Listener {
     private static DarkKnight instance = null;
     private final Map<UUID, ItemStack> projectileBows = new HashMap<>();
 
-    static {
-        allEnchants.add(new DarkKnight());
-    }
-
     public DarkKnight() {
         super("dark_knight", ChatColor.YELLOW + "" + ChatColor.BOLD + "Dark Knight");
         if (instance == null) {
@@ -30,6 +26,10 @@ public class DarkKnight extends CustomEnchant implements Listener {
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of DarkKnight Enchant (report this to developer)");
         }
+
+        setAcceptsSwords(true);
+        setAcceptsAxes(true);
+        setAcceptsBows(true);
 
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
 
