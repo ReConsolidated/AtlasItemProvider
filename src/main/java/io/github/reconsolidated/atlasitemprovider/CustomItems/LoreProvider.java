@@ -85,6 +85,14 @@ public class LoreProvider {
         return result;
     }
 
+    public static void updateLore(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return;
+        meta.lore(getLore(item));
+        item.setItemMeta(meta);
+        return;
+    }
+
     private static String getToolLuckText(ItemStack item) {
         if (item.getType().toString().contains("PICKAXE")) {
             return "Mining Luck: ";

@@ -35,6 +35,7 @@ public class CustomAnvil implements Listener {
     public void onPrepareResult(PrepareSmithingEvent event) {
         if (!event.getView().equals(view)) return;
 
+
         if (event.getInventory().getInputEquipment() != null && event.getInventory().getInputMineral() != null) {
             // UPGRADES
             if (isUpgradeable(event.getInventory().getInputEquipment()) && isUpgradePowder(event.getInventory().getInputMineral())) {
@@ -44,7 +45,10 @@ public class CustomAnvil implements Listener {
             if (isEnchantedBook(event.getInventory().getInputEquipment()) && EnchantmentsAnvil.isChanceDust(event.getInventory().getInputMineral())) {
                 event.setResult(EnchantmentsAnvil.getUpgradeResult(event.getInventory().getInputEquipment(), event.getInventory().getInputMineral()));
             }
-        } else if (event.getInventory().getInputEquipment() != null && isUpgradeable(event.getInventory().getInputEquipment())) {
+
+        }
+        // TURNING ITEM INTO POWDER
+        else if (event.getInventory().getInputEquipment() != null && isUpgradeable(event.getInventory().getInputEquipment())) {
             event.setResult(getPowderResult(event.getInventory().getInputEquipment()));
         }
 

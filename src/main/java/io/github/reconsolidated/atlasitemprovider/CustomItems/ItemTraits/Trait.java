@@ -32,7 +32,7 @@ public enum Trait {
                 case BOW_DAMAGE ->  meta.getPersistentDataContainer().get(BowDamage.getInstance().getKey(), PersistentDataType.DOUBLE);
                 case CRIT_CHANCE -> meta.getPersistentDataContainer().get(CritChance.getInstance().getKey(), PersistentDataType.DOUBLE);
                 case DAMAGE -> meta.getPersistentDataContainer().get(Damage.getInstance().getKey(), PersistentDataType.DOUBLE);
-                case DURABILITY -> (double) meta.getPersistentDataContainer().get(Durability.getDurabilityKey(), PersistentDataType.INTEGER);
+                case DURABILITY -> meta.getPersistentDataContainer().get(Durability.getMaxDurabilityKey(), PersistentDataType.DOUBLE);
                 case HUNTING_LUCK -> meta.getPersistentDataContainer().get(HuntingLuck.getInstance().getKey(), PersistentDataType.DOUBLE);
                 case TOOL_LUCK -> meta.getPersistentDataContainer().get(ToolLuck.getInstance().getKey(), PersistentDataType.DOUBLE);
             };

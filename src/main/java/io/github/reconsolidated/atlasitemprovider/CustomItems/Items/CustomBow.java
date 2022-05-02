@@ -19,14 +19,16 @@ import org.bukkit.persistence.PersistentDataType;
 public class CustomBow {
     public static ItemStack createCustomBow(String name, Material material, double damage, int maxDurability, double critChance, double huntingLuck) {
         ItemStack item = new ItemStack(material);
-        ItemMeta meta = item.getItemMeta();
 
-        meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
-        meta.getPersistentDataContainer().set(BowDamage.getInstance().getKey(), PersistentDataType.DOUBLE, damage);
-        meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
+        Upgrades.setUpgrades(item, 0);
+        BowDamage.getInstance().set(item, damage);
+        Durability.getInstance().set(item, maxDurability);
+        CritChance.getInstance().set(item, critChance);
+        HuntingLuck.getInstance().set(item, huntingLuck);
+
+        ItemMeta meta = item.getItemMeta();
         meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
-        meta.getPersistentDataContainer().set(CritChance.getInstance().getKey(), PersistentDataType.DOUBLE, critChance);
-        meta.getPersistentDataContainer().set(HuntingLuck.getInstance().getKey(), PersistentDataType.DOUBLE, huntingLuck);
+
 
         meta.displayName(
                 Component.text(ColorHelper.translate(name))

@@ -34,8 +34,7 @@ public class Antigravity extends CustomEnchant implements Listener {
             Player player = (Player) event.getEntity();
 
             if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
-                List<ItemStack> items = new ArrayList<>(List.of(player.getInventory().getArmorContents()));
-                for (ItemStack item : items) {
+                for (ItemStack item : player.getInventory().getArmorContents()) {
                     if (get(item) > 0) {
                         event.setCancelled(true);
                         return;

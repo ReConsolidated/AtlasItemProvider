@@ -2,23 +2,29 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Durability;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.AnvilInventory;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.inventory.PrepareAnvilEvent;
+import org.bukkit.event.inventory.PrepareSmithingEvent;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class EnchantmentsAnvil implements Listener {
@@ -36,6 +42,7 @@ public class EnchantmentsAnvil implements Listener {
         if (event.getClickedInventory() == null
                 || event.getClickedInventory().getType() != InventoryType.ANVIL) return;
 
+
         AnvilInventory inventory = (AnvilInventory) event.getClickedInventory();
         ItemStack clicked = inventory.getItem(event.getSlot());
         if (clicked != null && clicked.equals(inventory.getResult())) {
@@ -48,9 +55,10 @@ public class EnchantmentsAnvil implements Listener {
                             PersistentDataType.INTEGER);
                     if (potentialChance != null) {
                         chance = potentialChance;
+                        event.getWhoClicked().sendMessage("chance: " + potentialChance);
                     }
                 }
-                if (random.nextInt(100) < chance) {
+                if (random.nextInt(100) >= chance) {
                     event.setCancelled(true);
                     event.getWhoClicked().setItemOnCursor(inventory.getFirstItem());
                     inventory.setFirstItem(new ItemStack(Material.AIR));
@@ -61,11 +69,71 @@ public class EnchantmentsAnvil implements Listener {
                     event.getWhoClicked().sendMessage("unlucky");
                 } else {
                     event.getWhoClicked().sendMessage("lucky");
+//                    event.setCancelled(true);
+//                    event.getWhoClicked().setItemOnCursor(getJoinResult(inventory.getFirstItem(), inventory.getSecondItem()));
+//                    inventory.setFirstItem(new ItemStack(Material.AIR));
+//                    inventory.setSecondItem(new ItemStack(Material.AIR));
+//                    Player player = (Player) event.getWhoClicked();
+//                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_USE, 3, 1);
                 }
             } else {
                 event.setCancelled(true);
             }
         }
+    }
+
+
+    @EventHandler
+    public void onPrepareAnvil(PrepareAnvilEvent event) {
+        ItemStack result = getJoinResult(event.getInventory().getFirstItem(), event.getInventory().getSecondItem());
+        if (result != null) {
+            event.setResult(result);
+        }
+    }
+
+
+    private ItemStack getJoinResult(ItemStack firstItem, ItemStack secondItem) {
+        if (firstItem == null || secondItem == null) return null;
+
+        if (firstItem.getType().equals(secondItem.getType())) {
+            ItemStack result = firstItem.clone();
+
+            Double maxDurability = Durability.getInstance().get(firstItem);
+            if (maxDurability != null) {
+                int currentDurability1 = Durability.getInstance().getCurrent(firstItem);
+                int currentDurability2 = Durability.getInstance().getCurrent(secondItem);
+                Durability.getInstance().setCurrent(result, Math.min((int) (double) maxDurability, currentDurability1 + currentDurability2));
+            }
+
+
+            Map<CustomEnchant, Integer> firstItemEnchants = CustomEnchant.getEnchants(firstItem);
+            Map<CustomEnchant, Integer> secondItemEnchants = CustomEnchant.getEnchants(secondItem);
+            for (CustomEnchant enchant : firstItemEnchants.keySet()) {
+                if (secondItemEnchants.containsKey(enchant)) {
+                    int firstLvl = firstItemEnchants.get(enchant);
+                    int secondLvl = secondItemEnchants.get(enchant);
+                    // first enchant is bigger - nothing happens
+                    if (firstLvl > secondLvl) {
+                        continue;
+                    }
+                    // second enchant is bigger - we apply second enchant
+                    else if (secondLvl > firstLvl) {
+                        enchant.set(result, secondLvl);
+                    }
+                    // levels are equal - we apply enchant 1 bigger if possible
+                    else {
+                        if (enchant.getMaxLevel() > firstLvl) {
+                            enchant.set(result, firstLvl + 1);
+                        }
+                    }
+                }
+            }
+
+            LoreProvider.updateLore(result);
+            return result;
+        }
+        return null;
+
     }
 
     public static NamespacedKey getAnvilSuccessChanceKey() {

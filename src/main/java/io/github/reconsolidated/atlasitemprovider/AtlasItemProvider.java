@@ -2,11 +2,13 @@ package io.github.reconsolidated.atlasitemprovider;
 
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.BlacksmithCommand;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchantingTable.EnchantTableOpenListener;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -86,9 +88,12 @@ public final class AtlasItemProvider extends JavaPlugin  {
         ItemTrait.initTraits();
         CustomEnchant.init();
         new BlacksmithCommand();
+        new EnchantTableOpenListener();
 
         getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);
-        ExampleItems.init(this, this.getDataFolder());
+        Bukkit.getScheduler().runTaskLater(this, () -> {
+            ExampleItems.init(this, this.getDataFolder());
+        }, 100L);
 
         getServer().getPluginManager().registerEvents(new EnchantmentsAnvil(), this);
     }

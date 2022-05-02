@@ -35,8 +35,6 @@ public class WellFed extends CustomEnchant implements Listener {
     public void onFoodChance(FoodLevelChangeEvent event) {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
-            List<ItemStack> list = new ArrayList<>(List.of(player.getInventory().getArmorContents()));
-            list.add(player.getInventory().getItemInMainHand());
             for (ItemStack item : player.getInventory().getArmorContents()) {
                 if (item != null && item.getItemMeta() != null) {
                     if (get(item) > 0) {

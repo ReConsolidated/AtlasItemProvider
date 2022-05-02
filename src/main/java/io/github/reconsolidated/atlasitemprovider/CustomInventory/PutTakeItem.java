@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomInventory;
 
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -16,8 +17,14 @@ public class PutTakeItem extends InventoryItem{
 
     @Override
     public void onClick(InventoryClickEvent event) {
-        if (event.getClickedInventory() != null) {
-            onStateChanged.accept(event.getClickedInventory().getItem(event.getSlot()));
+        if (event.getAction().equals(InventoryAction.PICKUP_ALL)) {
+            onStateChanged.accept(null);
+        }
+        else if (event.getCurrentItem() != null) {
+
+            onStateChanged.accept(event.getCurrentItem());
+        } else if (event.getCursor() != null) {
+            onStateChanged.accept(event.getCursor());
         }
     }
 }

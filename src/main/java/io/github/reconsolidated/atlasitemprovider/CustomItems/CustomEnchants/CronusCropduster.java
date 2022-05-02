@@ -20,7 +20,7 @@ public class CronusCropduster extends CustomEnchant implements Listener {
 
 
     public CronusCropduster() {
-        super("cronus_cropduster", ChatColor.YELLOW + "" + ChatColor.BOLD + "Poseidon's Curse");
+        super("cronus_cropduster", ChatColor.YELLOW + "" + ChatColor.BOLD + "Cronus Cropduster");
         if (instance == null) {
             instance = this;
         } else {

@@ -8,29 +8,23 @@ import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.UUID;
-
 public class CustomTool {
-    public static ItemStack createCustomTool(String name, Material material, double miningSpeed, int maxDurability, double luck) {
+    public static ItemStack createCustomTool(String name, Material material, int maxDurability, double luck) {
         ItemStack item = new ItemStack(material);
+
+        Upgrades.setUpgrades(item, 0);
+        Durability.getInstance().set(item, maxDurability);
+        ToolLuck.getInstance().set(item, luck);
+
+
         ItemMeta meta = item.getItemMeta();
 
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED,
-                new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed",
-                        miningSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
 
-        meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
-        meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
-        meta.getPersistentDataContainer().set(Durability.getInstance().getKey(), PersistentDataType.INTEGER, maxDurability);
-        meta.getPersistentDataContainer().set(ToolLuck.getInstance().getKey(), PersistentDataType.DOUBLE, luck);
-
+        meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
 
         meta.displayName(
                 Component.text(ColorHelper.translate(name))

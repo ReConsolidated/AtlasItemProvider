@@ -3,6 +3,7 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits;
 import dev.simplix.plugins.atlascoredata.AtlasCoreDataAPI;
 import dev.simplix.plugins.atlascoredata.model.RankedItem;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
@@ -37,18 +38,20 @@ public class Rank extends ItemTrait {
     @Override
     public Double get(ItemStack item) {
         List<RankedItem> items = AtlasCoreDataAPI.instance().rankedItemStorage().items();
-
+        Bukkit.getLogger().info("Ranked items count: " + items.size());
+        long ID = getID(item);
         for (RankedItem ri : items) {
-            if (ri.id() == getID(item)) {
+            if (ri.id() == ID) {
                 AtlasCoreDataAPI.instance().rankedItemStorage().delete(ri);
             }
         }
-        RankedItem newItem = new RankedItem(AtlasItemProvider.plugin.getItemName(item), getID(item), (int) getRankScore(item));
+        RankedItem newItem = new RankedItem(AtlasItemProvider.plugin.getItemName(item), ID, (int) getRankScore(item));
         AtlasCoreDataAPI.instance().rankedItemStorage().save(newItem);
+        items.add(newItem);
         items.sort(Comparator.comparing(RankedItem::score));
         for (int i = 0; i<items.size(); i++) {
             RankedItem ri = items.get(i);
-            if (ri.id() == getID(item)) {
+            if (ri.id() == ID) {
                 return (double)i+1;
             }
         }
@@ -58,6 +61,7 @@ public class Rank extends ItemTrait {
     private double getRankScore(ItemStack item) {
         double score = 0;
         for (ItemTrait trait : ItemTrait.getTraitsSet()) {
+            if (trait instanceof Rank) continue;
             Double value = trait.get(item);
             if (value != null) {
                 score += value;

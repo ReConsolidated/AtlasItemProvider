@@ -24,6 +24,14 @@ import java.util.UUID;
 public class CustomSword {
     public static ItemStack createCustomSword(String name, Material material, double damage, int maxDurability, double critChance, double huntingLuck) {
         ItemStack item = new ItemStack(material);
+
+        Upgrades.setUpgrades(item, 0);
+        Damage.getInstance().set(item, damage);
+        Durability.getInstance().set(item, maxDurability);
+        CritChance.getInstance().set(item, critChance);
+        HuntingLuck.getInstance().set(item, huntingLuck);
+
+
         ItemMeta meta = item.getItemMeta();
 
 
@@ -31,12 +39,8 @@ public class CustomSword {
                 new AttributeModifier(UUID.randomUUID(), "generic.attackDamage",
                 damage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
 
-        meta.getPersistentDataContainer().set(Upgrades.getUpgradesKey(), PersistentDataType.INTEGER, 0);
-        meta.getPersistentDataContainer().set(Damage.getInstance().getKey(), PersistentDataType.DOUBLE, damage);
-        meta.getPersistentDataContainer().set(Durability.getMaxDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
+
         meta.getPersistentDataContainer().set(Durability.getDurabilityKey(), PersistentDataType.INTEGER, maxDurability);
-        meta.getPersistentDataContainer().set(CritChance.getInstance().getKey(), PersistentDataType.DOUBLE, critChance);
-        meta.getPersistentDataContainer().set(HuntingLuck.getInstance().getKey(), PersistentDataType.DOUBLE, huntingLuck);
 
         meta.displayName(
                 Component.text(ColorHelper.translate(name))

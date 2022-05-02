@@ -24,7 +24,7 @@ public class MedusaMadness extends CustomEnchant implements Listener {
 
 
     public MedusaMadness() {
-        super("medusa_madness", ChatColor.YELLOW + "" + ChatColor.BOLD + "Achilles Heel");
+        super("medusa_madness", ChatColor.YELLOW + "" + ChatColor.BOLD + "Medusa's Madness");
         if (instance == null) {
             instance = this;
         } else {

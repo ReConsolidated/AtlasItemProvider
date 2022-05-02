@@ -1,12 +1,16 @@
 package io.github.reconsolidated.atlasitemprovider;
 
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -26,6 +30,37 @@ public class ItemProviderCommand implements CommandExecutor {
             onHelp(sender);
             return true;
         }
+        if (args[0].equalsIgnoreCase("enchant")) {
+            if (!(sender instanceof Player)) return true;
+            if (args.length == 1) {
+                sender.sendMessage(ChatColor.RED + "Correct usage: ");
+                sender.sendMessage(ChatColor.AQUA + "/itemprovider enchant <enchant_name> [level=1]");
+            } else {
+                Player player = (Player) sender;
+                ItemStack item = player.getInventory().getItemInMainHand();
+
+                int value = 1;
+                if (args.length > 2) {
+                    try {
+                        value = Integer.parseInt(args[2]);
+                    } catch (NumberFormatException exception) {
+                        sender.sendMessage(ChatColor.RED + "Please input a valid number");
+                    }
+                }
+
+                CustomEnchant enchant = CustomEnchant.getEnchant(args[1]);
+                if (enchant == null) {
+                    sender.sendMessage(ChatColor.RED + "No such enchant.");
+                } else {
+                    enchant.set(item, value);
+                    ItemMeta meta = item.getItemMeta();
+                    meta.lore(LoreProvider.getLore(item));
+                    item.setItemMeta(meta);
+                    sender.sendMessage(ChatColor.GREEN + "Successfully applied enchant " + enchant.getDisplayName() + " " + value + ".");
+                }
+            }
+        }
+
         if (args[0].equalsIgnoreCase("add")) {
             if (args.length < 2) {
                 sender.sendMessage(ChatColor.RED + "Correct usage: ");

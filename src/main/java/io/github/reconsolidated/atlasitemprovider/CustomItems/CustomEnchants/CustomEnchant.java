@@ -17,6 +17,7 @@ import java.util.Map;
 
 public abstract class CustomEnchant {
     protected static List<CustomEnchant> allEnchants = new ArrayList<>();
+    protected int maxLevel = 4;
 
     private final String name;
     private final String displayName;
@@ -60,7 +61,9 @@ public abstract class CustomEnchant {
     public Integer get(ItemStack item) {
         if (item == null) return 0;
         if (item.getItemMeta() == null) return 0;
-        return item.getItemMeta().getPersistentDataContainer().get(getKey(), PersistentDataType.INTEGER);
+        Integer value = item.getItemMeta().getPersistentDataContainer().get(getKey(), PersistentDataType.INTEGER);
+        if (value == null) return 0;
+        return value;
     }
 
     public NamespacedKey getKey() {
@@ -166,5 +169,9 @@ public abstract class CustomEnchant {
         allEnchants.add(new Wizard());
         allEnchants.add(new ZeusWrath());
 
+    }
+
+    public int getMaxLevel() {
+        return maxLevel;
     }
 }

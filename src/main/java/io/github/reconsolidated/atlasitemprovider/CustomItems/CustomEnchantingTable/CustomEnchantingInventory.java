@@ -4,9 +4,12 @@ import io.github.reconsolidated.atlasitemprovider.CustomInventory.InventoryMenu;
 import io.github.reconsolidated.atlasitemprovider.CustomInventory.PutTakeItem;
 import io.github.reconsolidated.atlasitemprovider.CustomInventory.TakeOnlyItem;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
@@ -27,15 +30,16 @@ public class CustomEnchantingInventory extends InventoryMenu {
 
         setSlot1(new ItemStack(Material.AIR));
         setSlot2(new ItemStack(Material.AIR));
-
-        addItem(new TakeOnlyItem(new ItemStack(Material.AIR), 2, 7, (event) -> {
-            setSlot1(new ItemStack(Material.AIR));
-            setSlot2(new ItemStack(Material.AIR));
-        }));
+        setSlot3(new ItemStack(Material.AIR));
     }
 
     private void prepareResult() {
         // first item set and second item empty -> result is just the copy of first item
+        Bukkit.broadcastMessage("Slot 1: " + slot1);
+        Bukkit.broadcastMessage("Slot 2: " + slot2);
+        Bukkit.broadcastMessage("Slot 3: " + slot3);
+
+
         if (slot1 != null && (slot2 == null || slot2.getType().equals(Material.AIR))) {
             setSlot3(slot1.clone());
             return;
@@ -50,7 +54,9 @@ public class CustomEnchantingInventory extends InventoryMenu {
         // first item set and second item set -> result is calculated
         Map<CustomEnchant, Integer> enchants = CustomEnchant.getEnchants(slot2);
 
+        Bukkit.broadcastMessage("Checking if enchant can be applied");
         if (canBeApplied(enchants.keySet(), slot1)) {
+            Bukkit.broadcastMessage("It can");
             setSlot3(applyEnchants(slot1.clone(), enchants));
         }
     }
@@ -59,6 +65,9 @@ public class CustomEnchantingInventory extends InventoryMenu {
         for (CustomEnchant enchant : enchants.keySet()) {
             enchant.set(item, enchants.get(enchant));
         }
+        ItemMeta meta = item.getItemMeta();
+        meta.lore(LoreProvider.getLore(item));
+        item.setItemMeta(meta);
         return item;
     }
 
@@ -79,6 +88,7 @@ public class CustomEnchantingInventory extends InventoryMenu {
             setSlot1(new ItemStack(Material.AIR));
             setSlot2(new ItemStack(Material.AIR));
         }));
+
     }
 
     private void setSlot2(ItemStack itemStack) {
@@ -87,16 +97,24 @@ public class CustomEnchantingInventory extends InventoryMenu {
             slot2 = item;
             prepareResult();
         }));
-        slot2 = new ItemStack(Material.AIR);
+        slot2 = itemStack;
     }
 
     private void setSlot1(ItemStack itemStack) {
         addItem(new PutTakeItem(itemStack, 2, 2, (item) -> {
-            slot1 = item;
+            if (item != null && item.getAmount() > 1) return;
+            Bukkit.broadcastMessage("Setting slot 1 to " + item);
+            if (item != null) {
+                slot1 = item.clone();
+            } else {
+                slot1 = null;
+            }
+
             prepareResult();
         }));
 
-        slot1 = new ItemStack(Material.AIR);
+        Bukkit.broadcastMessage("Setting slot 1 to " + itemStack);
+        slot1 = itemStack;
 
     }
 }

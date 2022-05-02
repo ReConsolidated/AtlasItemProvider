@@ -25,7 +25,7 @@ public class GuardianAngel extends CustomEnchant implements Listener {
             throw new RuntimeException("Attempted to create 2nd copy of GuardianAngel Enchant (report this to developer)");
         }
 
-        setAcceptsChestplate(true);
+        setAcceptsChestplates(true);
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

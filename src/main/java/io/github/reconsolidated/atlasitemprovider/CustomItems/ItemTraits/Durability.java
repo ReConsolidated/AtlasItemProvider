@@ -34,7 +34,7 @@ public class Durability extends ItemTrait implements Listener {
         ItemStack item = event.getItem();
         if (item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
-            Integer maxDurability = meta.getPersistentDataContainer().get(getMaxDurabilityKey(), PersistentDataType.INTEGER);
+            Double maxDurability = meta.getPersistentDataContainer().get(getMaxDurabilityKey(), PersistentDataType.DOUBLE);
             Integer currentDurability = meta.getPersistentDataContainer().get(getDurabilityKey(), PersistentDataType.INTEGER);
             if (currentDurability == null || maxDurability == null || maxDurability == 0) {
                 return;
@@ -46,7 +46,7 @@ public class Durability extends ItemTrait implements Listener {
                 Damageable dmg = (Damageable) meta;
                 dmg.getDamage();
                 int itemMaxDurability = item.getType().getMaxDurability();
-                int itemCurrentDurability = currentDurability * itemMaxDurability/maxDurability ;
+                int itemCurrentDurability = currentDurability * itemMaxDurability/(int) (double) maxDurability ;
                 dmg.setDamage(itemMaxDurability - itemCurrentDurability);
             }
 
@@ -68,5 +68,21 @@ public class Durability extends ItemTrait implements Listener {
     @Override
     public NamespacedKey getKey() {
         return getMaxDurabilityKey();
+    }
+
+    public int getCurrent(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return 0;
+        Integer value = meta.getPersistentDataContainer().get(getDurabilityKey(), PersistentDataType.INTEGER);
+        if (value == null) return 0;
+        return value;
+    }
+
+    public ItemStack setCurrent(ItemStack item, int value) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return item;
+        meta.getPersistentDataContainer().set(getDurabilityKey(), PersistentDataType.INTEGER, value);
+        item.setItemMeta(meta);
+        return item;
     }
 }

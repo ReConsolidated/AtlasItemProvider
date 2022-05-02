@@ -65,8 +65,8 @@ public class ExampleItems {
 
 
         config.set("custom_shovel",
-                CustomTool.createCustomTool("&#55FF66Gucci Shovel", Material.DIAMOND_SHOVEL,
-                        30, 100, 50));
+                CustomTool.createCustomTool("&#55FF66Good Shovel", Material.DIAMOND_SHOVEL,
+                         100, 50));
 
 
         config.set("enchant_dust_30",
