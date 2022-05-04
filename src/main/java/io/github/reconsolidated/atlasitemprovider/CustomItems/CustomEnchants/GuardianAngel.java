@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -18,7 +19,7 @@ public class GuardianAngel extends CustomEnchant implements Listener {
 
 
     public GuardianAngel() {
-        super("guardian_angel", ChatColor.YELLOW + "" + ChatColor.BOLD + "Guardian Angel");
+        super("guardian_angel", ChatColor.YELLOW + "" + ChatColor.BOLD + "Guardian Angel", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -13,12 +14,14 @@ public class Absorb extends CustomEnchant implements Listener {
     private static Absorb instance = null;
 
     public Absorb() {
-        super("absorb", ChatColor.YELLOW + "" + ChatColor.BOLD + "Absorb");
+        super("absorb", ChatColor.YELLOW + "" + ChatColor.BOLD + "Absorb", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Absorb Enchant (report this to developer)");
         }
+
+        maxLevel = 3;
 
         setAcceptsSwords(true);
 

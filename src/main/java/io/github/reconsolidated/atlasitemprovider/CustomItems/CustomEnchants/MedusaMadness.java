@@ -2,6 +2,7 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Cooldown;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -24,7 +25,7 @@ public class MedusaMadness extends CustomEnchant implements Listener {
 
 
     public MedusaMadness() {
-        super("medusa_madness", ChatColor.YELLOW + "" + ChatColor.BOLD + "Medusa's Madness");
+        super("medusa_madness", ChatColor.YELLOW + "" + ChatColor.BOLD + "Medusa's Madness", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

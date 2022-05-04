@@ -1,16 +1,16 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Unbreakable extends CustomEnchant {
     private static Unbreakable instance = null;
-    private final int BASE_CHANCE = 10;
 
 
     public Unbreakable() {
-        super("unbreakable", ChatColor.YELLOW + "" + ChatColor.BOLD + "Unbreakable");
+        super("unbreakable", ChatColor.YELLOW + "" + ChatColor.BOLD + "Unbreakable", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

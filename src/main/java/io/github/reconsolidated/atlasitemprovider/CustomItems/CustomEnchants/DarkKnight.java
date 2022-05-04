@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -20,12 +21,14 @@ public class DarkKnight extends CustomEnchant implements Listener {
     private final Map<UUID, ItemStack> projectileBows = new HashMap<>();
 
     public DarkKnight() {
-        super("dark_knight", ChatColor.YELLOW + "" + ChatColor.BOLD + "Dark Knight");
+        super("dark_knight", ChatColor.YELLOW + "" + ChatColor.BOLD + "Dark Knight", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of DarkKnight Enchant (report this to developer)");
         }
+
+        maxLevel = 4;
 
         setAcceptsSwords(true);
         setAcceptsAxes(true);

@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -18,12 +19,13 @@ public class Aquatic extends CustomEnchant {
     private static Aquatic instance = null;
 
     public Aquatic() {
-        super("aquatic", ChatColor.YELLOW + "" + ChatColor.BOLD + "Aquatic");
+        super("aquatic", ChatColor.YELLOW + "" + ChatColor.BOLD + "Aquatic", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Aquatic Enchant (report this to developer)");
         }
+        maxLevel = 2;
 
         setAcceptsHelmets(true);
 

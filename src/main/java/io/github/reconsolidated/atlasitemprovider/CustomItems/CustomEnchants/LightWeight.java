@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -19,12 +20,14 @@ public class LightWeight extends CustomEnchant implements Listener {
 
 
     public LightWeight() {
-        super("light_weight", ChatColor.YELLOW + "" + ChatColor.BOLD + "Lightweight");
+        super("light_weight", ChatColor.YELLOW + "" + ChatColor.BOLD + "Lightweight", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of LightWeight Enchant (report this to developer)");
         }
+
+        maxLevel = 4;
 
         setAcceptsSwords(true);
 

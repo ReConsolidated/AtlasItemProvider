@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -14,12 +15,14 @@ public class Juggernaut extends CustomEnchant {
 
 
     public Juggernaut() {
-        super("juggernaut", ChatColor.YELLOW + "" + ChatColor.BOLD + "Juggernaut");
+        super("juggernaut", ChatColor.YELLOW + "" + ChatColor.BOLD + "Juggernaut", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Juggernaut Enchant (report this to developer)");
         }
+
+        maxLevel = 5;
 
         setAcceptsArmors(true);
     }

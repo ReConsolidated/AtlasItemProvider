@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -19,12 +20,14 @@ public class Telepathy extends CustomEnchant implements Listener {
 
 
     public Telepathy() {
-        super("telepathy", ChatColor.YELLOW + "" + ChatColor.BOLD + "Telepathy");
+        super("telepathy", ChatColor.YELLOW + "" + ChatColor.BOLD + "Telepathy", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Telepathy Enchant (report this to developer)");
         }
+
+        maxLevel = 1;
 
         setAcceptsTools(true);
 

@@ -2,6 +2,7 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import lombok.AccessLevel;
 import lombok.Setter;
 import org.bukkit.Material;
@@ -21,6 +22,7 @@ public abstract class CustomEnchant {
 
     private final String name;
     private final String displayName;
+    protected final Rarity rarity;
 
     @Setter(AccessLevel.PROTECTED)
     private boolean acceptsSwords;
@@ -45,9 +47,10 @@ public abstract class CustomEnchant {
     @Setter(AccessLevel.PROTECTED)
     private boolean acceptsGloves;
 
-    public CustomEnchant(String name, String displayName) {
+    public CustomEnchant(String name, String displayName, Rarity rarity) {
         this.name = name;
         this.displayName = displayName;
+        this.rarity = rarity;
     }
 
     public void set(ItemStack item, int value) {
@@ -138,32 +141,56 @@ public abstract class CustomEnchant {
         allEnchants.add(new Absorb());
         allEnchants.add(new AchillesHeel());
         allEnchants.add(new Antigravity());
+        allEnchants.add(new AquaAffinity());
         allEnchants.add(new Aquatic());
+        allEnchants.add(new BlastProtection());
         allEnchants.add(new Bully());
         allEnchants.add(new ChaosPrison());
         allEnchants.add(new ChimareasFireblast());
         allEnchants.add(new CronusCropduster());
         allEnchants.add(new DarkKnight());
         allEnchants.add(new Destruction());
+        allEnchants.add(new Efficiency());
         allEnchants.add(new Evacuate());
         allEnchants.add(new ExplosiveArrows());
+        allEnchants.add(new FeatherFalling());
+        allEnchants.add(new FinancialLoss());
+        allEnchants.add(new FireAspect());
         allEnchants.add(new Fireproof());
+        allEnchants.add(new FireProtection());
+        allEnchants.add(new Flame());
         allEnchants.add(new Forge());
+        allEnchants.add(new FrostWalker());
+        allEnchants.add(new Getaway());
         allEnchants.add(new GlowingAura());
         allEnchants.add(new GuardianAngel());
         allEnchants.add(new HadeSoulTrade());
         allEnchants.add(new Haste());
         allEnchants.add(new Headless());
+        allEnchants.add(new Infinity());
         allEnchants.add(new Juggernaut());
+        allEnchants.add(new Knockback());
         allEnchants.add(new LightsOut());
         allEnchants.add(new LightWeight());
+        allEnchants.add(new LuckOfTheSea());
         allEnchants.add(new Magma());
         allEnchants.add(new MedusaMadness());
+        allEnchants.add(new PegasusDoubleJump());
         allEnchants.add(new PoseidonCurse());
+        allEnchants.add(new Power());
+        allEnchants.add(new ProjectileProtection());
         allEnchants.add(new Robber());
+        allEnchants.add(new Riptide());
+        allEnchants.add(new Smite());
+        allEnchants.add(new Speed());
         allEnchants.add(new StrongWilled());
+        allEnchants.add(new Sturdy());
+        allEnchants.add(new SuperMiner());
+        allEnchants.add(new SweepingEdge());
+        allEnchants.add(new Swole());
         allEnchants.add(new Telepathy());
         allEnchants.add(new Thief());
+        allEnchants.add(new Thorns());
         allEnchants.add(new Unbreakable());
         allEnchants.add(new WellFed());
         allEnchants.add(new Wizard());

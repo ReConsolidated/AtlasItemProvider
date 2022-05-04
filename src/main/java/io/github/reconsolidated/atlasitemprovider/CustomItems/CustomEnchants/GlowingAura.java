@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -14,7 +15,7 @@ public class GlowingAura extends CustomEnchant {
 
 
     public GlowingAura() {
-        super("glowing_aura", ChatColor.YELLOW + "" + ChatColor.BOLD + "Glowing Aura");
+        super("glowing_aura", ChatColor.YELLOW + "" + ChatColor.BOLD + "Glowing Aura", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

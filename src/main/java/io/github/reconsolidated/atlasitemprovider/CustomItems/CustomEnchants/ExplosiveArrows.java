@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -20,12 +21,14 @@ public class ExplosiveArrows extends CustomEnchant implements Listener {
 
 
     public ExplosiveArrows() {
-        super("explosive_arrows", ChatColor.YELLOW + "" + ChatColor.BOLD + "Explosive Arrows");
+        super("explosive_arrows", ChatColor.YELLOW + "" + ChatColor.BOLD + "Explosive Arrows", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of ExplosiveArrows Enchant (report this to developer)");
         }
+
+        maxLevel = 3;
 
         setAcceptsBows(true);
 

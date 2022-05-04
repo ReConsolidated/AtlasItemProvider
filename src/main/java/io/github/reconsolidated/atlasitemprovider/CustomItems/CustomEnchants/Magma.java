@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -28,7 +29,7 @@ public class Magma extends CustomEnchant implements Listener {
 
 
     public Magma() {
-        super("magma", ChatColor.YELLOW + "" + ChatColor.BOLD + "Magma");
+        super("magma", ChatColor.YELLOW + "" + ChatColor.BOLD + "Magma", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

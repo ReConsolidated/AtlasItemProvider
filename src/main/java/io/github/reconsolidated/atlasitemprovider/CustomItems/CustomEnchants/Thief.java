@@ -2,6 +2,7 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import dev.simplix.plugins.atlascoredata.AtlasCoreDataAPI;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -14,12 +15,14 @@ public class Thief extends CustomEnchant implements Listener {
 
 
     public Thief() {
-        super("thief", ChatColor.YELLOW + "" + ChatColor.BOLD + "Thief");
+        super("thief", ChatColor.YELLOW + "" + ChatColor.BOLD + "Thief", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Thief Enchant (report this to developer)");
         }
+
+        maxLevel = 3;
 
         setAcceptsSwords(true);
 

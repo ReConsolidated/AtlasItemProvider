@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -18,12 +19,14 @@ public class WellFed extends CustomEnchant implements Listener {
 
 
     public WellFed() {
-        super("well_fed", ChatColor.YELLOW + "" + ChatColor.BOLD + "Well-Fed");
+        super("well_fed", ChatColor.YELLOW + "" + ChatColor.BOLD + "Well-Fed", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of WellFed Enchant (report this to developer)");
         }
+
+        maxLevel = 1;
 
         setAcceptsChestplates(true);
 

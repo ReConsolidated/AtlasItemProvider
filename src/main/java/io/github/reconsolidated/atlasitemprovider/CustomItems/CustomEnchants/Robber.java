@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import dev.simplix.plugins.atlascoredata.AtlasCoreDataAPI;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -21,12 +22,14 @@ public class Robber extends CustomEnchant implements Listener {
 
 
     public Robber() {
-        super("robber", ChatColor.YELLOW + "" + ChatColor.BOLD + "Robber");
+        super("robber", ChatColor.YELLOW + "" + ChatColor.BOLD + "Robber", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Robber Enchant (report this to developer)");
         }
+
+        maxLevel = 5;
 
         setAcceptsSwords(true);
 

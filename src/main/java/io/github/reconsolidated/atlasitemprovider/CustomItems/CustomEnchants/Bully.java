@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import io.github.reconsolidated.atlasitemprovider.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,7 +23,7 @@ public class Bully extends CustomEnchant implements Listener {
 
 
     public Bully() {
-        super("bully", ChatColor.YELLOW + "" + ChatColor.BOLD + "Bully");
+        super("bully", ChatColor.YELLOW + "" + ChatColor.BOLD + "Bully", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

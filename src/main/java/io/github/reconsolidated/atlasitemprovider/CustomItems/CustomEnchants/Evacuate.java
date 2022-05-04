@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -18,12 +19,14 @@ public class Evacuate extends CustomEnchant implements Listener {
 
 
     public Evacuate() {
-        super("evacuate", ChatColor.YELLOW + "" + ChatColor.BOLD + "Evacuate");
+        super("evacuate", ChatColor.YELLOW + "" + ChatColor.BOLD + "Evacuate", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Evacuate Enchant (report this to developer)");
         }
+
+        maxLevel = 5;
 
         setAcceptsArmors(true);
 

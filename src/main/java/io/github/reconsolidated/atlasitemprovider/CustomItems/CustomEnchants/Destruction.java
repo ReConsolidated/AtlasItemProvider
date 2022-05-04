@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -9,12 +10,14 @@ public class Destruction extends CustomEnchant {
     private static Destruction instance = null;
 
     public Destruction() {
-        super("destruction", ChatColor.YELLOW + "" + ChatColor.BOLD + "Destruction");
+        super("destruction", ChatColor.YELLOW + "" + ChatColor.BOLD + "Destruction", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Destruction Enchant (report this to developer)");
         }
+
+        maxLevel = 1;
 
         setAcceptsTools(true);
 

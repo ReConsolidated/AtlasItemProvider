@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -16,12 +17,14 @@ public class Antigravity extends CustomEnchant implements Listener {
     private static Antigravity instance = null;
 
     public Antigravity() {
-        super("antigravity", ChatColor.YELLOW + "" + ChatColor.BOLD + "Antigravity");
+        super("antigravity", ChatColor.YELLOW + "" + ChatColor.BOLD + "Antigravity", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Antigravity Enchant (report this to developer)");
         }
+
+        maxLevel = 1;
 
         setAcceptsBoots(true);
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);

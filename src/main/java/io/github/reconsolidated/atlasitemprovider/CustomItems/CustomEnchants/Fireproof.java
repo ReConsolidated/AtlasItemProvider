@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Item;
@@ -15,12 +16,14 @@ public class Fireproof extends CustomEnchant implements Listener {
 
 
     public Fireproof() {
-        super("fireproof", ChatColor.YELLOW + "" + ChatColor.BOLD + "Fireproof");
+        super("fireproof", ChatColor.YELLOW + "" + ChatColor.BOLD + "Fireproof", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of Fireproof Enchant (report this to developer)");
         }
+
+        maxLevel = 1;
 
         setAcceptsArmors(true);
         setAcceptsSwords(true);

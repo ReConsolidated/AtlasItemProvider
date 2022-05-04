@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
@@ -20,7 +21,7 @@ public class AchillesHeel extends CustomEnchant implements Listener {
 
 
     public AchillesHeel() {
-        super("achilles_heel", ChatColor.YELLOW + "" + ChatColor.BOLD + "Achilles Heel");
+        super("achilles_heel", ChatColor.YELLOW + "" + ChatColor.BOLD + "Achilles Heel", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

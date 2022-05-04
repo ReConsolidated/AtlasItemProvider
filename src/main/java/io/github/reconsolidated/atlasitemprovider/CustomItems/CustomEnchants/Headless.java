@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import io.github.reconsolidated.atlasitemprovider.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,7 +19,7 @@ public class Headless extends CustomEnchant implements Listener {
 
 
     public Headless() {
-        super("headless", ChatColor.YELLOW + "" + ChatColor.BOLD + "Headless");
+        super("headless", ChatColor.YELLOW + "" + ChatColor.BOLD + "Headless", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

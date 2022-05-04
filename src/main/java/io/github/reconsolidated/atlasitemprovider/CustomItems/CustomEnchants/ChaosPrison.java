@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -16,7 +17,7 @@ public class ChaosPrison extends CustomEnchant implements Listener {
     private static ChaosPrison instance = null;
 
     public ChaosPrison() {
-        super("chaos_prison", ChatColor.YELLOW + "" + ChatColor.BOLD + "Chaos's Prison");
+        super("chaos_prison", ChatColor.YELLOW + "" + ChatColor.BOLD + "Chaos's Prison", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {

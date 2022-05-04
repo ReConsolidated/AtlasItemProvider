@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -19,7 +20,7 @@ public class ChimareasFireblast extends CustomEnchant implements Listener {
 
 
     public ChimareasFireblast() {
-        super("chimareas_fireblast", ChatColor.YELLOW + "" + ChatColor.BOLD + "Chimareas Fireblast");
+        super("chimareas_fireblast", ChatColor.YELLOW + "" + ChatColor.BOLD + "Chimareas Fireblast", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

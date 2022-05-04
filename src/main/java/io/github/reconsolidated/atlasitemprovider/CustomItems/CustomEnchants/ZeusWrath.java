@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
@@ -16,7 +17,7 @@ public class ZeusWrath extends CustomEnchant implements Listener {
 
 
     public ZeusWrath() {
-        super("zeus_wrath", ChatColor.YELLOW + "" + ChatColor.BOLD + "Zeus's Wrath");
+        super("zeus_wrath", ChatColor.YELLOW + "" + ChatColor.BOLD + "Zeus's Wrath", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {

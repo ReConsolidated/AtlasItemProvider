@@ -1,5 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -36,12 +37,14 @@ public class Forge extends CustomEnchant implements Listener {
     }
 
     public Forge() {
-        super("forge", ChatColor.YELLOW + "" + ChatColor.BOLD + "Forge");
+        super("forge", ChatColor.YELLOW + "" + ChatColor.BOLD + "Forge", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {
             throw new RuntimeException("Attempted to create 2nd copy of StrongWilled Enchant (report this to developer)");
         }
+
+        maxLevel = 3;
 
         setAcceptsPickaxes(true);
 

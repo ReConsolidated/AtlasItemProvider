@@ -1,6 +1,7 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -20,7 +21,7 @@ public class PoseidonCurse extends CustomEnchant implements Listener {
 
 
     public PoseidonCurse() {
-        super("poseidon_curse", ChatColor.YELLOW + "" + ChatColor.BOLD + "Poseidon's Curse");
+        super("poseidon_curse", ChatColor.YELLOW + "" + ChatColor.BOLD + "Poseidon's Curse", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {
