@@ -51,7 +51,7 @@ public class FinancialLoss  extends CustomEnchant implements Listener {
         }
         Double bonusDamage = arrowBonusDamage.get(event.getEntity().getUniqueId());
 
-        if (bonusDamage > 0) {
+        if (bonusDamage != null && bonusDamage > 0) {
             if (event.getHitEntity() instanceof LivingEntity) {
                 LivingEntity le = (LivingEntity) event.getHitEntity();
                 le.damage(bonusDamage, (Player) event.getEntity().getShooter());

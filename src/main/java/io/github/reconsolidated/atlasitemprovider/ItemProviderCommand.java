@@ -3,6 +3,7 @@ package io.github.reconsolidated.atlasitemprovider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
+import io.github.reconsolidated.atlasitemprovider.Particles.Styles.Test;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -30,6 +31,10 @@ public class ItemProviderCommand implements CommandExecutor {
             onHelp(sender);
             return true;
         }
+        if (args[0].equalsIgnoreCase("test")) {
+            Test.run((Player) sender);
+        }
+
         if (args[0].equalsIgnoreCase("enchant")) {
             if (!(sender instanceof Player)) return true;
             if (args.length == 1) {

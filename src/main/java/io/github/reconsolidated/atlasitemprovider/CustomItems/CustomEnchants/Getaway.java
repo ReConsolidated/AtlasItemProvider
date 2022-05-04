@@ -4,6 +4,7 @@ import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,7 +41,10 @@ public class Getaway extends CustomEnchant implements Listener {
 
             if (level > 0) {
                 Player player = (Player) event.getEntity();
-                player.setVelocity(player.getVelocity().add(new Vector(0, 3, 0)));
+                if (event.getForce() > 0.4 && player.getLocation().getWorld().getBlockAt(player.getLocation().clone().add(0, -1, 0)).getType() != Material.AIR) {
+                    player.setVelocity(player.getVelocity().add(new Vector(0, 3, 0)));
+                }
+
             }
         }
     }
