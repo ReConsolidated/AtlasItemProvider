@@ -1,7 +1,11 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import dev.esophose.playerparticles.particles.ParticleEffect;
+import dev.esophose.playerparticles.styles.DefaultStyles;
+import dev.esophose.playerparticles.styles.ParticleStyle;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
+import io.github.reconsolidated.atlasitemprovider.Particles.TempPPEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -24,6 +28,10 @@ public class ChaosPrison extends CustomEnchant implements Listener {
             throw new RuntimeException("Attempted to create 2nd copy of ChaosPrison Enchant (report this to developer)");
         }
 
+        maxLevel = 3;
+
+        setAcceptsSwords(true);
+
         Bukkit.getServer().getPluginManager().registerEvents(this, AtlasItemProvider.plugin);
 
     }
@@ -44,11 +52,13 @@ public class ChaosPrison extends CustomEnchant implements Listener {
             if (chaosLevel == null || chaosLevel == 0) {
                 return;
             }
-            int duration = 20 * chaosLevel;
+            int duration = 50 * chaosLevel;
             attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 100));
             attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, duration, 100));
             attacked.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, duration, 100));
             attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, duration, 100));
+            TempPPEffect.createPlayer(ParticleEffect.DUST, DefaultStyles.SPIRAL, attacked, duration);
+
         }
 
     }

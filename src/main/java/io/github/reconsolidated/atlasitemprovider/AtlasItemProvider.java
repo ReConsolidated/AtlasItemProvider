@@ -1,10 +1,13 @@
 package io.github.reconsolidated.atlasitemprovider;
 
+import dev.esophose.playerparticles.api.PlayerParticlesAPI;
+import dev.esophose.playerparticles.particles.FixedParticleEffect;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.BlacksmithCommand;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchantingTable.EnchantTableOpenListener;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
+import io.github.reconsolidated.atlasitemprovider.Particles.Styles.ParticleEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -25,6 +28,7 @@ import java.util.List;
 
 public final class AtlasItemProvider extends JavaPlugin  {
     public static AtlasItemProvider plugin;
+    public static PlayerParticlesAPI ppAPI;
 
     static {
         ConfigurationSerialization.registerClass(ProviderItem.class, "provideritem");
@@ -80,6 +84,17 @@ public final class AtlasItemProvider extends JavaPlugin  {
     public void onEnable() {
         // Plugin startup logic
         plugin = this;
+        ppAPI = PlayerParticlesAPI.getInstance();
+
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            for (FixedParticleEffect effect : ppAPI.getFixedParticleEffects(Bukkit.getConsoleSender())) {
+                ppAPI.removeFixedEffect(Bukkit.getConsoleSender(), effect.getId());
+            }
+        }, 40L);
+
+
+        
+        
         nameKey = new NamespacedKey(this, "item_name");
         dataFolder = getDataFolder();
 
@@ -96,6 +111,8 @@ public final class AtlasItemProvider extends JavaPlugin  {
         }, 100L);
 
         getServer().getPluginManager().registerEvents(new EnchantmentsAnvil(), this);
+
+        Bukkit.getScheduler().runTaskTimer(this, ParticleEffect::tickParticles, 20L, 1L);
     }
 
     @Override

@@ -1,6 +1,10 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import dev.esophose.playerparticles.particles.ParticleEffect;
+import dev.esophose.playerparticles.particles.data.OrdinaryColor;
+import dev.esophose.playerparticles.styles.DefaultStyles;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
+import io.github.reconsolidated.atlasitemprovider.Particles.TempPPEffect;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -48,8 +52,10 @@ public class ChimareasFireblast extends CustomEnchant implements Listener {
     private void apply(ItemStack item, Player target) {
         int level = get(item);
         if (level > 0) {
-            target.setFireTicks(5);
+            target.setFireTicks(5 * 20);
             target.damage(10);
+            TempPPEffect.createPlayer(ParticleEffect.FLAME, DefaultStyles.SPIRAL,
+                    target, 5 * 20);
         }
     }
 

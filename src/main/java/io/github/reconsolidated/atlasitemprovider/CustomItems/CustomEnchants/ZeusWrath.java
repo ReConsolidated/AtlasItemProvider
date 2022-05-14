@@ -1,7 +1,11 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import dev.esophose.playerparticles.particles.ParticleEffect;
+import dev.esophose.playerparticles.particles.data.OrdinaryColor;
+import dev.esophose.playerparticles.styles.DefaultStyles;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
+import io.github.reconsolidated.atlasitemprovider.Particles.TempPPEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
@@ -52,6 +56,13 @@ public class ZeusWrath extends CustomEnchant implements Listener {
             le.getWorld().strikeLightningEffect(le.getLocation());
 
             le.damage(2 * chaosLevel);
+
+            if (le instanceof Player) {
+                TempPPEffect.createPlayer(ParticleEffect.DUST, DefaultStyles.NORMAL,
+                        (Player) le, 60L, new OrdinaryColor(255,255,0));
+
+            }
+
         }
     }
 

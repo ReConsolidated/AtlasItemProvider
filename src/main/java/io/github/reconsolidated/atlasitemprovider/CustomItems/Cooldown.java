@@ -23,12 +23,14 @@ public class Cooldown {
 
     public void set(ItemStack item, Long time) {
         ItemMeta meta = item.getItemMeta();
+        if (meta == null) return;
         meta.getPersistentDataContainer().set(getKey(), PersistentDataType.LONG, System.currentTimeMillis() + time);
         item.setItemMeta(meta);
     }
 
     public boolean isOnCooldown(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
+        if (meta == null) return false;
         Long cooldown = meta.getPersistentDataContainer().get(getKey(), PersistentDataType.LONG);
         if (cooldown == null) return false;
         return cooldown <= System.currentTimeMillis();

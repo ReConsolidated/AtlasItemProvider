@@ -50,7 +50,9 @@ public class PegasusDoubleJump extends CustomEnchant implements Listener {
             return;
         } else {
             e.setCancelled(true);
-            p.setVelocity(e.getPlayer().getLocation().getDirection().multiply(1.5).setY(1));
+            if (get(p.getInventory().getBoots()) > 0) {
+                p.setVelocity(e.getPlayer().getLocation().getDirection().multiply(1.5).setY(1));
+            }
         }
 
     }

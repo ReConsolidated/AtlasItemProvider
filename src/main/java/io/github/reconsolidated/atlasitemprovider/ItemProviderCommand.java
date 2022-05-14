@@ -3,10 +3,12 @@ package io.github.reconsolidated.atlasitemprovider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
+import io.github.reconsolidated.atlasitemprovider.Particles.Styles.Firework;
 import io.github.reconsolidated.atlasitemprovider.Particles.Styles.Spiral;
 import io.github.reconsolidated.atlasitemprovider.Particles.Styles.Test;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -34,7 +37,9 @@ public class ItemProviderCommand implements CommandExecutor {
         }
         if (args[0].equalsIgnoreCase("test")) {
             Player player = (Player) sender;
-            new Spiral(player.getEyeLocation());
+            Test.run(player);
+
+
         }
 
         if (args[0].equalsIgnoreCase("enchant")) {

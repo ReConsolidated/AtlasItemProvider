@@ -1,7 +1,11 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import dev.esophose.playerparticles.particles.ParticleEffect;
+import dev.esophose.playerparticles.particles.data.OrdinaryColor;
+import dev.esophose.playerparticles.styles.DefaultStyles;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
+import io.github.reconsolidated.atlasitemprovider.Particles.TempPPEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -43,7 +47,10 @@ public class PoseidonCurse extends CustomEnchant implements Listener {
                 if (chance > random.nextInt(100)) {
                     if (event.getEntity() instanceof Player) {
                         Player player = (Player) event.getEntity();
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER, 8, 1));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER, 8 * 20, 1));
+
+                        TempPPEffect.createPlayer(ParticleEffect.DUST, DefaultStyles.NORMAL,
+                                player, 60L, new OrdinaryColor(40,200,255));
                     }
                 }
             }

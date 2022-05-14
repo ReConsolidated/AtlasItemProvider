@@ -1,8 +1,12 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
+import dev.esophose.playerparticles.particles.ParticleEffect;
+import dev.esophose.playerparticles.particles.data.OrdinaryColor;
+import dev.esophose.playerparticles.styles.DefaultStyles;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Cooldown;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
+import io.github.reconsolidated.atlasitemprovider.Particles.TempPPEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -67,6 +71,12 @@ public class MedusaMadness extends CustomEnchant implements Listener {
                 target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 15 * 20, level));
                 target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 15 * 20, level));
                 target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 15 * 20, level));
+
+                TempPPEffect.createPlayer(ParticleEffect.DUST, DefaultStyles.NORMAL,
+                        target, 15 * 20, new OrdinaryColor(35, 82, 37));
+                TempPPEffect.createPlayer(ParticleEffect.DUST, DefaultStyles.NORMAL,
+                        target, 15 * 20, new OrdinaryColor(142, 148, 142));
+
                 Cooldown.getInstance().set(item, 60000L);
             }
         }
