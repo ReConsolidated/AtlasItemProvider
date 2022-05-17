@@ -5,6 +5,7 @@ import io.github.reconsolidated.atlasitemprovider.CustomInventory.PutTakeItem;
 import io.github.reconsolidated.atlasitemprovider.CustomInventory.TakeOnlyItem;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -12,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -72,7 +72,20 @@ public class CustomEnchantingInventory extends InventoryMenu {
     }
 
     private boolean canBeApplied(Set<CustomEnchant> enchants, ItemStack slot1) {
+        Set<CustomEnchant> itemEnchants = CustomEnchant.getEnchants(slot1).keySet();
+        boolean alreadyHasLegendary = false;
+
+        for (CustomEnchant e : itemEnchants) {
+            if (e.getRarity() == Rarity.LEGENDARY) {
+                alreadyHasLegendary = true;
+                break;
+            }
+        }
+
         for (CustomEnchant enchant : enchants) {
+            if (enchant.getRarity() == Rarity.LEGENDARY && alreadyHasLegendary) {
+                return false;
+            }
             if (enchant.get(slot1) > 0) {
                 return false;
             }

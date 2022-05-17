@@ -24,7 +24,7 @@ public class HadeSoulTrade extends CustomEnchant implements Listener {
     private static HadeSoulTrade instance = null;
 
     public HadeSoulTrade() {
-        super("hade_soul_trade", ChatColor.YELLOW + "" + ChatColor.BOLD + "Hade's Soul Trade", Rarity.LEGENDARY);
+        super("hade_soul_trade", "Hade's Soul Trade", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {

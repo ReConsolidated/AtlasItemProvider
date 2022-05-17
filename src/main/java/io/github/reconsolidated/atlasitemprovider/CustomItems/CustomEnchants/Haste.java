@@ -15,7 +15,7 @@ public class Haste extends CustomEnchant {
 
 
     public Haste() {
-        super("haste", ChatColor.YELLOW + "" + ChatColor.BOLD + "Haste", Rarity.RARE);
+        super("haste", "Haste", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {

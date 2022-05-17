@@ -17,7 +17,7 @@ public class Getaway extends CustomEnchant implements Listener {
 
 
     public Getaway() {
-        super("getaway", ChatColor.YELLOW + "" + ChatColor.BOLD + "Getaway", Rarity.UNCOMMON);
+        super("getaway", "Getaway", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

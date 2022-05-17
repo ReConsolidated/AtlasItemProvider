@@ -25,7 +25,7 @@ public class PoseidonCurse extends CustomEnchant implements Listener {
 
 
     public PoseidonCurse() {
-        super("poseidon_curse", ChatColor.YELLOW + "" + ChatColor.BOLD + "Poseidon's Curse", Rarity.LEGENDARY);
+        super("poseidon_curse", "Poseidon's Curse", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {

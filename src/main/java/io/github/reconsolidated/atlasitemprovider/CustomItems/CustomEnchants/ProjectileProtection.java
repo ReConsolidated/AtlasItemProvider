@@ -10,7 +10,7 @@ public class ProjectileProtection extends CustomEnchant {
 
 
     public ProjectileProtection() {
-        super("projectile_protection", ChatColor.YELLOW + "" + ChatColor.BOLD + "Projectile Protection", Rarity.COMMON);
+        super("projectile_protection", "Projectile Protection", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

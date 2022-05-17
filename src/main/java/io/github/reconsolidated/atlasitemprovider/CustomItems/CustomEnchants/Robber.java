@@ -22,7 +22,7 @@ public class Robber extends CustomEnchant implements Listener {
 
 
     public Robber() {
-        super("robber", ChatColor.YELLOW + "" + ChatColor.BOLD + "Robber", Rarity.COMMON);
+        super("robber", "Robber", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

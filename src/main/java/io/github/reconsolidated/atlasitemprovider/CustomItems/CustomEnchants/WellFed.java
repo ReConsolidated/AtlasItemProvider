@@ -19,7 +19,7 @@ public class WellFed extends CustomEnchant implements Listener {
 
 
     public WellFed() {
-        super("well_fed", ChatColor.YELLOW + "" + ChatColor.BOLD + "Well-Fed", Rarity.COMMON);
+        super("well_fed", "Well-Fed", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

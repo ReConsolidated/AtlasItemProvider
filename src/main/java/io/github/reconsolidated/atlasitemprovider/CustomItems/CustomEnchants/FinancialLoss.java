@@ -25,7 +25,7 @@ public class FinancialLoss  extends CustomEnchant implements Listener {
 
 
     public FinancialLoss() {
-        super("financial_loss", ChatColor.YELLOW + "" + ChatColor.BOLD + "Financial Loss", Rarity.COMMON);
+        super("financial_loss", "Financial Loss", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

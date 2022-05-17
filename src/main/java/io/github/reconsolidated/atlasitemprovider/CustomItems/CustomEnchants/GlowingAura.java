@@ -15,7 +15,7 @@ public class GlowingAura extends CustomEnchant {
 
 
     public GlowingAura() {
-        super("glowing_aura", ChatColor.YELLOW + "" + ChatColor.BOLD + "Glowing Aura", Rarity.COMMON);
+        super("glowing_aura", "Glowing Aura", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

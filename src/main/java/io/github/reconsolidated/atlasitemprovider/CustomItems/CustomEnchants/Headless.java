@@ -19,7 +19,7 @@ public class Headless extends CustomEnchant implements Listener {
 
 
     public Headless() {
-        super("headless", ChatColor.YELLOW + "" + ChatColor.BOLD + "Headless", Rarity.UNCOMMON);
+        super("headless", "Headless", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

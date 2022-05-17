@@ -19,7 +19,7 @@ public class Sturdy extends CustomEnchant implements Listener {
     private final int baseChance = 10;
 
     public Sturdy() {
-        super("sturdy", ChatColor.YELLOW + "" + ChatColor.BOLD + "Sturdy", Rarity.COMMON);
+        super("sturdy", "Sturdy", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

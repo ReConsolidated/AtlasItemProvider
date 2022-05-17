@@ -10,7 +10,7 @@ public class SweepingEdge extends CustomEnchant {
 
 
     public SweepingEdge() {
-        super("sweeping_edge", ChatColor.YELLOW + "" + ChatColor.BOLD + "Sweeping Edge", Rarity.EPIC);
+        super("sweeping_edge", "Sweeping Edge", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

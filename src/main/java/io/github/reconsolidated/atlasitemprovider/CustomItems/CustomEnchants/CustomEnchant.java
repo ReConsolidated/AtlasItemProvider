@@ -4,6 +4,7 @@ import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -11,10 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class CustomEnchant {
     protected static List<CustomEnchant> allEnchants = new ArrayList<>();
@@ -22,6 +20,7 @@ public abstract class CustomEnchant {
 
     private final String name;
     private final String displayName;
+    @Getter
     protected final Rarity rarity;
 
     @Setter(AccessLevel.PROTECTED)
@@ -100,7 +99,7 @@ public abstract class CustomEnchant {
 
 
     public String getDisplayName() {
-        return displayName;
+        return rarity.getChatStyle() + displayName;
     }
 
     public boolean canBeAppliedTo(ItemStack item) {
@@ -196,6 +195,7 @@ public abstract class CustomEnchant {
         allEnchants.add(new Wizard());
         allEnchants.add(new ZeusWrath());
 
+        allEnchants.sort(Comparator.comparing(o -> o.rarity));
     }
 
     public int getMaxLevel() {

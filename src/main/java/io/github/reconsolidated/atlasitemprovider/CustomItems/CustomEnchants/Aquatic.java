@@ -19,7 +19,7 @@ public class Aquatic extends CustomEnchant {
     private static Aquatic instance = null;
 
     public Aquatic() {
-        super("aquatic", ChatColor.YELLOW + "" + ChatColor.BOLD + "Aquatic", Rarity.COMMON);
+        super("aquatic", "Aquatic", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

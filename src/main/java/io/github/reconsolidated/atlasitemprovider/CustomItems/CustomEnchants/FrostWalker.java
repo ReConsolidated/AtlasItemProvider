@@ -10,7 +10,7 @@ public class FrostWalker extends CustomEnchant {
 
 
     public FrostWalker() {
-        super("frost_walker", ChatColor.YELLOW + "" + ChatColor.BOLD + "Frost Walker", Rarity.LEGENDARY);
+        super("frost_walker", "Frost Walker", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {

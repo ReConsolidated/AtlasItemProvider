@@ -10,7 +10,7 @@ public class Destruction extends CustomEnchant {
     private static Destruction instance = null;
 
     public Destruction() {
-        super("destruction", ChatColor.YELLOW + "" + ChatColor.BOLD + "Destruction", Rarity.COMMON);
+        super("destruction", "Destruction", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

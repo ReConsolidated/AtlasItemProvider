@@ -29,7 +29,7 @@ public class MedusaMadness extends CustomEnchant implements Listener {
 
 
     public MedusaMadness() {
-        super("medusa_madness", ChatColor.YELLOW + "" + ChatColor.BOLD + "Medusa's Madness", Rarity.EPIC);
+        super("medusa_madness", "Medusa's Madness", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

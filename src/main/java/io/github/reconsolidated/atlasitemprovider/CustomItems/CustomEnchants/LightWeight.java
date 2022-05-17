@@ -20,7 +20,7 @@ public class LightWeight extends CustomEnchant implements Listener {
 
 
     public LightWeight() {
-        super("light_weight", ChatColor.YELLOW + "" + ChatColor.BOLD + "Lightweight", Rarity.COMMON);
+        super("light_weight", "Lightweight", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

@@ -10,7 +10,7 @@ public class Knockback extends CustomEnchant {
 
 
     public Knockback() {
-        super("knockback", ChatColor.YELLOW + "" + ChatColor.BOLD + "Knockback", Rarity.COMMON);
+        super("knockback", "Knockback", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

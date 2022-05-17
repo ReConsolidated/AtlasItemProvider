@@ -10,7 +10,7 @@ public class AquaAffinity extends CustomEnchant {
 
 
     public AquaAffinity() {
-        super("aqua_affinity", ChatColor.YELLOW + "" + ChatColor.BOLD + "Aqua Affinity", Rarity.EPIC);
+        super("aqua_affinity", "Aqua Affinity", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

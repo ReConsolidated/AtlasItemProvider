@@ -22,7 +22,7 @@ public class PegasusDoubleJump extends CustomEnchant implements Listener {
 
 
     public PegasusDoubleJump() {
-        super("pegasus_double_jump", ChatColor.YELLOW + "" + ChatColor.BOLD + "Pegasus Double Jump", Rarity.EPIC);
+        super("pegasus_double_jump", "Pegasus Double Jump", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

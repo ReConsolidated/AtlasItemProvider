@@ -21,7 +21,7 @@ public class ChaosPrison extends CustomEnchant implements Listener {
     private static ChaosPrison instance = null;
 
     public ChaosPrison() {
-        super("chaos_prison", ChatColor.YELLOW + "" + ChatColor.BOLD + "Chaos's Prison", Rarity.LEGENDARY);
+        super("chaos_prison", "Chaos's Prison", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {

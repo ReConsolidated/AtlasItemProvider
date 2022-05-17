@@ -3,7 +3,6 @@ package io.github.reconsolidated.atlasitemprovider.Particles;
 import dev.esophose.playerparticles.particles.FixedParticleEffect;
 import dev.esophose.playerparticles.particles.ParticleEffect;
 import dev.esophose.playerparticles.particles.ParticlePair;
-import dev.esophose.playerparticles.particles.data.ColorTransition;
 import dev.esophose.playerparticles.particles.data.OrdinaryColor;
 import dev.esophose.playerparticles.styles.ParticleStyle;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;

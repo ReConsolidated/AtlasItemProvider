@@ -10,7 +10,7 @@ public class FeatherFalling extends CustomEnchant {
 
 
     public FeatherFalling() {
-        super("feather_falling", ChatColor.YELLOW + "" + ChatColor.BOLD + "Feather Falling", Rarity.COMMON);
+        super("feather_falling", "Feather Falling", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

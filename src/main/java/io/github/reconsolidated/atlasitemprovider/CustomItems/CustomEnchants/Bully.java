@@ -23,7 +23,7 @@ public class Bully extends CustomEnchant implements Listener {
 
 
     public Bully() {
-        super("bully", ChatColor.YELLOW + "" + ChatColor.BOLD + "Bully", Rarity.UNCOMMON);
+        super("bully", "Bully", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

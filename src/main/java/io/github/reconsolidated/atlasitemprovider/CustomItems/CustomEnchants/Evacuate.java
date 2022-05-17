@@ -19,7 +19,7 @@ public class Evacuate extends CustomEnchant implements Listener {
 
 
     public Evacuate() {
-        super("evacuate", ChatColor.YELLOW + "" + ChatColor.BOLD + "Evacuate", Rarity.RARE);
+        super("evacuate", "Evacuate", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {

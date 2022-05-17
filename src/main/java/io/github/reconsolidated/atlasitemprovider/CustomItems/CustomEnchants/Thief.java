@@ -15,7 +15,7 @@ public class Thief extends CustomEnchant implements Listener {
 
 
     public Thief() {
-        super("thief", ChatColor.YELLOW + "" + ChatColor.BOLD + "Thief", Rarity.RARE);
+        super("thief", "Thief", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {

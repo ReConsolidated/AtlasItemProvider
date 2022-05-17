@@ -10,7 +10,7 @@ public class Smite extends CustomEnchant {
 
 
     public Smite() {
-        super("smite", ChatColor.YELLOW + "" + ChatColor.BOLD + "Smite", Rarity.COMMON);
+        super("smite", "Smite", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

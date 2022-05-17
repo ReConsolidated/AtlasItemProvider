@@ -21,7 +21,7 @@ public class LightsOut extends CustomEnchant implements Listener {
 
 
     public LightsOut() {
-        super("lights_out", ChatColor.YELLOW + "" + ChatColor.BOLD + "Lights Out", Rarity.UNCOMMON);
+        super("lights_out", "Lights Out", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

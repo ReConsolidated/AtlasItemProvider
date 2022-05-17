@@ -16,7 +16,7 @@ public class Swole extends CustomEnchant implements Listener {
     private final int baseDamage = 1;
 
     public Swole() {
-        super("swole", ChatColor.YELLOW + "" + ChatColor.BOLD + "Swole", Rarity.UNCOMMON);
+        super("swole", "Swole", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

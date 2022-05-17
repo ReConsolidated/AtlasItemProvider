@@ -10,7 +10,7 @@ public class LuckOfTheSea extends CustomEnchant {
 
 
     public LuckOfTheSea() {
-        super("luck_of_the_sea", ChatColor.YELLOW + "" + ChatColor.BOLD + "Luck of the Sea", Rarity.EPIC);
+        super("luck_of_the_sea", "Luck of the Sea", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

@@ -10,7 +10,7 @@ public class Unbreakable extends CustomEnchant {
 
 
     public Unbreakable() {
-        super("unbreakable", ChatColor.YELLOW + "" + ChatColor.BOLD + "Unbreakable", Rarity.EPIC);
+        super("unbreakable", "Unbreakable", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

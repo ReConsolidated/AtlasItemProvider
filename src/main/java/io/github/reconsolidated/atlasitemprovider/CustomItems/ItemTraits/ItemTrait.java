@@ -22,6 +22,7 @@ public abstract class ItemTrait {
         traits.add(new HuntingLuck());
         traits.add(new Rank());
         traits.add(new ToolLuck());
+        traits.add(new Rarity());
     }
 
     public static Set<ItemTrait> getTraitsSet() {

@@ -4,8 +4,10 @@ import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.ColorHelper;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Durability;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Rarity;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -143,6 +145,17 @@ public class EnchantmentsAnvil implements Listener {
     public static ItemStack getEnchantedBook(int chance) {
         ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
         setAnvilChance(item, chance);
+
+        ItemMeta meta = item.getItemMeta();
+
+        meta.displayName(Component.text("§e§lEnchanted Book §a§l(%d%% success chance)".formatted(chance)).decoration(TextDecoration.ITALIC, false));
+
+        item.setItemMeta(meta);
+
+        Rarity.getInstance().set(item, 0);
+
+        LoreProvider.updateLore(item);
+
         return item;
     }
 

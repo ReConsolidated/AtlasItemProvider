@@ -10,7 +10,7 @@ public class Infinity extends CustomEnchant {
 
 
     public Infinity() {
-        super("infinity", ChatColor.YELLOW + "" + ChatColor.BOLD + "Infinity", Rarity.EPIC);
+        super("infinity", "Infinity", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

@@ -16,7 +16,7 @@ public class Speed extends CustomEnchant implements Listener {
 
 
     public Speed() {
-        super("speed", ChatColor.YELLOW + "" + ChatColor.BOLD + "Speed", Rarity.UNCOMMON);
+        super("speed", "Speed", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

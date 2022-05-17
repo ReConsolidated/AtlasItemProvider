@@ -10,7 +10,7 @@ public class Thorns extends CustomEnchant {
 
 
     public Thorns() {
-        super("thorns", ChatColor.YELLOW + "" + ChatColor.BOLD + "Thorns", Rarity.LEGENDARY);
+        super("thorns", "Thorns", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {

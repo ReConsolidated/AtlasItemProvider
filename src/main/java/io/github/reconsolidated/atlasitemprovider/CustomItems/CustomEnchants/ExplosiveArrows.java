@@ -21,7 +21,7 @@ public class ExplosiveArrows extends CustomEnchant implements Listener {
 
 
     public ExplosiveArrows() {
-        super("explosive_arrows", ChatColor.YELLOW + "" + ChatColor.BOLD + "Explosive Arrows", Rarity.COMMON);
+        super("explosive_arrows", "Explosive Arrows", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

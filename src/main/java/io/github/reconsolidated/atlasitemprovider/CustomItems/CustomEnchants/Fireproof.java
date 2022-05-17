@@ -16,7 +16,7 @@ public class Fireproof extends CustomEnchant implements Listener {
 
 
     public Fireproof() {
-        super("fireproof", ChatColor.YELLOW + "" + ChatColor.BOLD + "Fireproof", Rarity.COMMON);
+        super("fireproof", "Fireproof", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

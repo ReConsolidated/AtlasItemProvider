@@ -17,7 +17,7 @@ public class Antigravity extends CustomEnchant implements Listener {
     private static Antigravity instance = null;
 
     public Antigravity() {
-        super("antigravity", ChatColor.YELLOW + "" + ChatColor.BOLD + "Antigravity", Rarity.COMMON);
+        super("antigravity", "Antigravity", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

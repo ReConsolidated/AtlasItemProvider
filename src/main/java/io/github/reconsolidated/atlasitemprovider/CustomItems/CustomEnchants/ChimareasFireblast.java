@@ -24,7 +24,7 @@ public class ChimareasFireblast extends CustomEnchant implements Listener {
 
 
     public ChimareasFireblast() {
-        super("chimareas_fireblast", ChatColor.YELLOW + "" + ChatColor.BOLD + "Chimareas Fireblast", Rarity.EPIC);
+        super("chimareas_fireblast", "Chimareas Fireblast", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

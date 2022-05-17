@@ -37,7 +37,7 @@ public class Forge extends CustomEnchant implements Listener {
     }
 
     public Forge() {
-        super("forge", ChatColor.YELLOW + "" + ChatColor.BOLD + "Forge", Rarity.COMMON);
+        super("forge", "Forge", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

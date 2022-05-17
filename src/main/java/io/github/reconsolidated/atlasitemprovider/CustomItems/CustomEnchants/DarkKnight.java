@@ -21,7 +21,7 @@ public class DarkKnight extends CustomEnchant implements Listener {
     private final Map<UUID, ItemStack> projectileBows = new HashMap<>();
 
     public DarkKnight() {
-        super("dark_knight", ChatColor.YELLOW + "" + ChatColor.BOLD + "Dark Knight", Rarity.COMMON);
+        super("dark_knight", "Dark Knight", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

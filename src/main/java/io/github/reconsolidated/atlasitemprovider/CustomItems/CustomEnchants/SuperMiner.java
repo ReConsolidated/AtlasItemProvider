@@ -22,7 +22,7 @@ public class SuperMiner extends CustomEnchant implements Listener {
 
 
     public SuperMiner() {
-        super("super_miner", ChatColor.YELLOW + "" + ChatColor.BOLD + "Super Miner", Rarity.UNCOMMON);
+        super("super_miner", "Super Miner", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

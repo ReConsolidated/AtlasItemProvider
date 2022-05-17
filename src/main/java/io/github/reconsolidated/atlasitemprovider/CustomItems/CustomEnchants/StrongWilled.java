@@ -21,7 +21,7 @@ public class StrongWilled  extends CustomEnchant implements Listener {
 
 
     public StrongWilled() {
-        super("strong_willed", ChatColor.YELLOW + "" + ChatColor.BOLD + "Strong Willed", Rarity.COMMON);
+        super("strong_willed", "Strong Willed", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

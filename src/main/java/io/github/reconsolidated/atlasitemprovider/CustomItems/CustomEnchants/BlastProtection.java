@@ -10,7 +10,7 @@ public class BlastProtection extends CustomEnchant {
 
 
     public BlastProtection() {
-        super("blast_protection", ChatColor.YELLOW + "" + ChatColor.BOLD + "BlastProtection", Rarity.COMMON);
+        super("blast_protection", "BlastProtection", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

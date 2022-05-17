@@ -19,7 +19,7 @@ public class GuardianAngel extends CustomEnchant implements Listener {
 
 
     public GuardianAngel() {
-        super("guardian_angel", ChatColor.YELLOW + "" + ChatColor.BOLD + "Guardian Angel", Rarity.UNCOMMON);
+        super("guardian_angel", "Guardian Angel", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

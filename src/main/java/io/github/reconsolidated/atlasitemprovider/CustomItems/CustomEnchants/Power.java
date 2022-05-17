@@ -10,7 +10,7 @@ public class Power extends CustomEnchant {
 
 
     public Power() {
-        super("power", ChatColor.YELLOW + "" + ChatColor.BOLD + "Power", Rarity.COMMON);
+        super("power", "Power", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

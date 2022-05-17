@@ -20,7 +20,7 @@ public class Wizard extends CustomEnchant implements Listener {
 
 
     public Wizard() {
-        super("wizard", ChatColor.YELLOW + "" + ChatColor.BOLD + "Wizard", Rarity.RARE);
+        super("wizard", "Wizard", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {

@@ -10,7 +10,7 @@ public class FireAspect extends CustomEnchant {
 
 
     public FireAspect() {
-        super("fire_aspect", ChatColor.YELLOW + "" + ChatColor.BOLD + "Fire Aspect", Rarity.EPIC);
+        super("fire_aspect", "Fire Aspect", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

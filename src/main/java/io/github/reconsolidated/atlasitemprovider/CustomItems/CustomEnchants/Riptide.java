@@ -10,7 +10,7 @@ public class Riptide extends CustomEnchant {
 
 
     public Riptide() {
-        super("riptide", ChatColor.YELLOW + "" + ChatColor.BOLD + "Riptide", Rarity.EPIC);
+        super("riptide", "Riptide", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

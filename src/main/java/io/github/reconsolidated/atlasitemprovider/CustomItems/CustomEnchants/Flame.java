@@ -10,7 +10,7 @@ public class Flame extends CustomEnchant {
 
 
     public Flame() {
-        super("flame", ChatColor.YELLOW + "" + ChatColor.BOLD + "Flame", Rarity.EPIC);
+        super("flame", "Flame", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

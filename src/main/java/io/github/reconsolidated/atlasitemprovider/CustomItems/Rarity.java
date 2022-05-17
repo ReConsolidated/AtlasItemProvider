@@ -14,4 +14,14 @@ public enum Rarity {
             case LEGENDARY -> ChatColor.GOLD + "LEGENDARY";
         };
     }
+
+    public String getChatStyle() {
+        return switch (this) {
+            case COMMON -> ChatColor.WHITE + "";
+            case UNCOMMON -> ChatColor.AQUA + "";
+            case RARE -> ChatColor.GREEN + "";
+            case EPIC -> ChatColor.RED + "";
+            case LEGENDARY -> ChatColor.GOLD + "" + ChatColor.BOLD;
+        };
+    }
 }

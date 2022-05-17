@@ -21,7 +21,7 @@ public class ZeusWrath extends CustomEnchant implements Listener {
 
 
     public ZeusWrath() {
-        super("zeus_wrath", ChatColor.YELLOW + "" + ChatColor.BOLD + "Zeus's Wrath", Rarity.LEGENDARY);
+        super("zeus_wrath", "Zeus's Wrath", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {

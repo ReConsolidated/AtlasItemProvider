@@ -14,7 +14,7 @@ public class Absorb extends CustomEnchant implements Listener {
     private static Absorb instance = null;
 
     public Absorb() {
-        super("absorb", ChatColor.YELLOW + "" + ChatColor.BOLD + "Absorb", Rarity.RARE);
+        super("absorb", "Absorb", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {

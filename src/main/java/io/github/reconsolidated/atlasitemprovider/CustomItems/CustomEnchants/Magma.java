@@ -29,7 +29,7 @@ public class Magma extends CustomEnchant implements Listener {
 
 
     public Magma() {
-        super("magma", ChatColor.YELLOW + "" + ChatColor.BOLD + "Magma", Rarity.UNCOMMON);
+        super("magma", "Magma", Rarity.UNCOMMON);
         if (instance == null) {
             instance = this;
         } else {

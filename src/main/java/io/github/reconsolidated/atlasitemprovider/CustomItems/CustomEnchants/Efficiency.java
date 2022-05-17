@@ -10,7 +10,7 @@ public class Efficiency extends CustomEnchant {
 
 
     public Efficiency() {
-        super("efficiency", ChatColor.YELLOW + "" + ChatColor.BOLD + "Efficiency", Rarity.COMMON);
+        super("efficiency", "Efficiency", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

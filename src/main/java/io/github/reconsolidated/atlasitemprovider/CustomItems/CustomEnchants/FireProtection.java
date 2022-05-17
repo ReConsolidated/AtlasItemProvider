@@ -10,7 +10,7 @@ public class FireProtection extends CustomEnchant {
 
 
     public FireProtection() {
-        super("fire_protection", ChatColor.YELLOW + "" + ChatColor.BOLD + "Fire Protection", Rarity.COMMON);
+        super("fire_protection", "Fire Protection", Rarity.COMMON);
         if (instance == null) {
             instance = this;
         } else {

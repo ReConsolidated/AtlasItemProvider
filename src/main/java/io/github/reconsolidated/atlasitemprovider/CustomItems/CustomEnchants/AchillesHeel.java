@@ -21,7 +21,7 @@ public class AchillesHeel extends CustomEnchant implements Listener {
 
 
     public AchillesHeel() {
-        super("achilles_heel", ChatColor.YELLOW + "" + ChatColor.BOLD + "Achilles Heel", Rarity.EPIC);
+        super("achilles_heel", "Achilles Heel", Rarity.EPIC);
         if (instance == null) {
             instance = this;
         } else {

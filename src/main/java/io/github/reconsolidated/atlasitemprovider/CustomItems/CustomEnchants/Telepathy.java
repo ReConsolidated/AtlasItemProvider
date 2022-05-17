@@ -20,7 +20,7 @@ public class Telepathy extends CustomEnchant implements Listener {
 
 
     public Telepathy() {
-        super("telepathy", ChatColor.YELLOW + "" + ChatColor.BOLD + "Telepathy", Rarity.RARE);
+        super("telepathy", "Telepathy", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {

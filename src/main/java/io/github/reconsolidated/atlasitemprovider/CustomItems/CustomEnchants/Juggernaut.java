@@ -15,7 +15,7 @@ public class Juggernaut extends CustomEnchant {
 
 
     public Juggernaut() {
-        super("juggernaut", ChatColor.YELLOW + "" + ChatColor.BOLD + "Juggernaut", Rarity.RARE);
+        super("juggernaut", "Juggernaut", Rarity.RARE);
         if (instance == null) {
             instance = this;
         } else {
