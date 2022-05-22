@@ -8,8 +8,8 @@ public enum Rarity {
     public String getDisplayName() {
         return switch (this) {
             case COMMON -> ChatColor.WHITE + "COMMON";
-            case UNCOMMON -> ChatColor.AQUA + "UNCOMMON";
-            case RARE -> ChatColor.GREEN + "RARE";
+            case UNCOMMON -> ChatColor.GREEN + "UNCOMMON";
+            case RARE -> ChatColor.AQUA + "RARE";
             case EPIC -> ChatColor.RED + "EPIC";
             case LEGENDARY -> ChatColor.GOLD + "LEGENDARY";
         };
@@ -18,8 +18,8 @@ public enum Rarity {
     public String getChatStyle() {
         return switch (this) {
             case COMMON -> ChatColor.WHITE + "";
-            case UNCOMMON -> ChatColor.AQUA + "";
-            case RARE -> ChatColor.GREEN + "";
+            case UNCOMMON -> ChatColor.GREEN + "";
+            case RARE -> ChatColor.AQUA + "";
             case EPIC -> ChatColor.RED + "";
             case LEGENDARY -> ChatColor.GOLD + "" + ChatColor.BOLD;
         };

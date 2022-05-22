@@ -26,10 +26,6 @@ public class LoreProvider {
         List<Component> result = new ArrayList<>();
         result.add(Component.text(""));
 
-        item.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        item.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        item.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-
         ItemMeta meta = item.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
@@ -114,6 +110,10 @@ public class LoreProvider {
         if (meta == null) return;
         meta.lore(getLore(item));
         item.setItemMeta(meta);
+
+        item.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        item.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        item.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
         return;
     }
 

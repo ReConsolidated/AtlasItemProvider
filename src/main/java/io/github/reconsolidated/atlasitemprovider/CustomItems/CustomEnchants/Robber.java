@@ -46,7 +46,13 @@ public class Robber extends CustomEnchant implements Listener {
         Player player = event.getPlayer().getKiller();
 
         int robberLevel = 0;
-        List<ItemStack> list = new ArrayList<>(List.of(player.getInventory().getArmorContents()));
+        List<ItemStack> list = new ArrayList<>();
+
+        for (ItemStack item : List.of(player.getInventory().getArmorContents())) {
+            if (item != null) {
+                list.add(item);
+            }
+        }
         list.add(player.getInventory().getItemInMainHand());
 
         for (ItemStack item : list) {

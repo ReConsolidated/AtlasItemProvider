@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -58,6 +59,10 @@ public abstract class CustomEnchant {
         item.setItemMeta(meta);
         meta.lore(LoreProvider.getLore(item));
         item.setItemMeta(meta);
+
+        item.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        item.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        item.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
     }
 
     public Integer get(ItemStack item) {

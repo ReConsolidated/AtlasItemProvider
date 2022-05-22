@@ -29,6 +29,7 @@ public class Cooldown {
     }
 
     public boolean isOnCooldown(ItemStack item) {
+        if (item == null) return false;
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return false;
         Long cooldown = meta.getPersistentDataContainer().get(getKey(), PersistentDataType.LONG);
