@@ -16,7 +16,7 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.*;
 
 public abstract class CustomEnchant {
-    protected static List<CustomEnchant> allEnchants = new ArrayList<>();
+    public static List<CustomEnchant> allEnchants = new ArrayList<>();
     protected int maxLevel = 4;
 
     private final String name;

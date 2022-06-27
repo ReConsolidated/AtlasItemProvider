@@ -3,6 +3,9 @@ package io.github.reconsolidated.atlasitemprovider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.LoreProvider;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.MysteryEnchantedBook.MysteryBook;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.MysteryEnchantedBook.MysteryBookManager;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.MysteryEnchantedBook.MysteryBookType;
 import io.github.reconsolidated.atlasitemprovider.Particles.Styles.Firework;
 import io.github.reconsolidated.atlasitemprovider.Particles.Styles.Spiral;
 import io.github.reconsolidated.atlasitemprovider.Particles.Styles.Test;
@@ -129,7 +132,40 @@ public class ItemProviderCommand implements CommandExecutor {
             } else {
                 sender.sendMessage(ChatColor.RED + "Only players can use this command!");
             }
+        }
 
+        if (args[0].equalsIgnoreCase("mbook")) {
+            if (sender instanceof Player) {
+                if (args.length < 2) {
+                    sender.sendMessage(ChatColor.RED + "Specify book type: COMMON, UNCOMMON, RARE, EPIC, MULTI");
+                } else {
+                    Player player = (Player) sender;
+                    MysteryBookType type;
+                    try {
+                        type = MysteryBookType.valueOf(args[1]);
+                    } catch (IllegalArgumentException exception) {
+                        sender.sendMessage(ChatColor.RED + "Book type must be one of: COMMON, UNCOMMON, RARE, EPIC, MULTI");
+                        return true;
+                    }
+
+
+                    if (args.length < 3) {
+                        Random random = new Random();
+                        player.getInventory().addItem(MysteryBook.getMysteryBookItem(type, random.nextInt(100) + 1));
+                        sender.sendMessage(ChatColor.GREEN + "Received %s mystery book with random chance.".formatted(args[1]));
+                    } else {
+                        try {
+                            int chance = Integer.parseInt(args[2]);
+                            player.getInventory().addItem(EnchantmentsAnvil.getEnchantedBook(chance));
+                            sender.sendMessage(ChatColor.GREEN + "Received empty enchanted book.");
+                        } catch (NumberFormatException exception) {
+                            sender.sendMessage(ChatColor.RED + "Input valid number!");
+                        }
+                    }
+                }
+            } else {
+                sender.sendMessage(ChatColor.RED + "Only players can use this command!");
+            }
         }
         return true;
     }
@@ -139,5 +175,6 @@ public class ItemProviderCommand implements CommandExecutor {
         sender.sendMessage(ChatColor.AQUA + "/itemprovider add <category> [name] - adds item from hand");
         sender.sendMessage(ChatColor.AQUA + "/itemprovider get <category> <name> - gives you item");
         sender.sendMessage(ChatColor.AQUA + "/itemprovider getbook [chance] - gives you empty enchanted book");
+        sender.sendMessage(ChatColor.AQUA + "/itemprovider mbook <type> [chance] - gives you empty enchanted book");
     }
 }

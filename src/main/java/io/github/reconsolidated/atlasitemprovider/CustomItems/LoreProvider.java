@@ -5,6 +5,7 @@ import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Upgrade
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Rarity;
+import io.github.reconsolidated.atlasitemprovider.Utils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.ChatColor;
@@ -90,7 +91,7 @@ public class LoreProvider {
         List<CustomEnchant> enchants = CustomEnchant.getEnchants(item).keySet().stream()
                 .sorted(Comparator.comparing(CustomEnchant::getRarity).reversed()).collect(Collectors.toList());
         for (CustomEnchant enchant : enchants) {
-            result.add(Component.text(ColorHelper.translate(enchant.getDisplayName() + ": " + ChatColor.WHITE + enchant.get(item))));
+            result.add(Component.text(ColorHelper.translate(enchant.getDisplayName() + ": " + ChatColor.WHITE + Utils.toRoman(enchant.get(item)))));
         }
 
 

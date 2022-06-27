@@ -152,8 +152,6 @@ public class EnchantmentsAnvil implements Listener {
 
         item.setItemMeta(meta);
 
-        Rarity.getInstance().set(item, 0);
-
         LoreProvider.updateLore(item);
 
         return item;

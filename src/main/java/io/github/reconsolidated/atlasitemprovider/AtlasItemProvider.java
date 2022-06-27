@@ -7,6 +7,7 @@ import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Blacksm
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchantingTable.EnchantTableOpenListener;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
+import io.github.reconsolidated.atlasitemprovider.CustomItems.MysteryEnchantedBook.MysteryBookManager;
 import io.github.reconsolidated.atlasitemprovider.Particles.Styles.ParticleEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.Style;
@@ -104,6 +105,7 @@ public final class AtlasItemProvider extends JavaPlugin  {
         CustomEnchant.init();
         new BlacksmithCommand();
         new EnchantTableOpenListener();
+        new MysteryBookManager(this);
 
         getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);
         Bukkit.getScheduler().runTaskLater(this, () -> {
