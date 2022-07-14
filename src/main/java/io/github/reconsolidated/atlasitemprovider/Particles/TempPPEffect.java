@@ -21,7 +21,9 @@ public class TempPPEffect {
                 pEffect, style);
 
         Bukkit.getScheduler().runTaskLater(AtlasItemProvider.plugin, () -> {
-            ppAPI.removeFixedEffect(Bukkit.getConsoleSender(), effect.getId());
+            if (effect != null) {
+                ppAPI.removeFixedEffect(Bukkit.getConsoleSender(), effect.getId());
+            }
         }, ticks);
     }
 
@@ -31,7 +33,9 @@ public class TempPPEffect {
                 pEffect, style);
 
         Bukkit.getScheduler().runTaskLater(AtlasItemProvider.plugin, () -> {
-            ppAPI.removeActivePlayerParticle(player, effect.getId());
+            if (player != null && effect != null) {
+                ppAPI.removeActivePlayerParticle(player, effect.getId());
+            }
         }, ticks);
     }
 
@@ -41,7 +45,8 @@ public class TempPPEffect {
                 pEffect, style, color);
 
         Bukkit.getScheduler().runTaskLater(AtlasItemProvider.plugin, () -> {
-            ppAPI.removeActivePlayerParticle(player, effect.getId());
-        }, ticks);
+            if (player != null && effect != null) {
+                ppAPI.removeActivePlayerParticle(player, effect.getId());
+            }        }, ticks);
     }
 }

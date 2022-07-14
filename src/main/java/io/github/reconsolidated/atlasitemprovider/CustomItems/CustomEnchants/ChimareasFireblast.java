@@ -22,9 +22,8 @@ public class ChimareasFireblast extends CustomEnchant implements Listener {
     private static ChimareasFireblast instance = null;
     private final Map<UUID, ItemStack> projectileBows = new HashMap<>();
 
-
     public ChimareasFireblast() {
-        super("chimareas_fireblast", "Chimareas Fireblast", Rarity.EPIC);
+        super("chimareas_fireblast", "Chimareas Fireblast", Rarity.LEGENDARY);
         if (instance == null) {
             instance = this;
         } else {
