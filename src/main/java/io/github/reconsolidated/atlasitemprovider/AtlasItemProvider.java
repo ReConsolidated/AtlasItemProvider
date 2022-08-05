@@ -10,6 +10,7 @@ import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.MysteryEnchantedBook.MysteryBookManager;
 import io.github.reconsolidated.atlasitemprovider.Particles.Styles.ParticleEffect;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
@@ -74,9 +75,16 @@ public final class AtlasItemProvider extends JavaPlugin  {
     }
 
     public String getItemName(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null && meta.hasDisplayName()) {
+            String displayName = meta.getDisplayName();
+            if (displayName.length() > 0) {
+                return displayName;
+            }
+        }
         String name = item.getItemMeta().getPersistentDataContainer().get(nameKey, PersistentDataType.STRING);
         if (name == null) {
-            return item.getType().name();
+            return item.getType().name().replaceAll("_", " ");
         }
         return name;
     }
