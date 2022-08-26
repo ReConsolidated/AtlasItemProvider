@@ -27,11 +27,12 @@ public class InventoryMenu implements Listener {
     protected Inventory inventory;
     private String title;
 
+    @SuppressWarnings("deprecation")
     public InventoryMenu(Plugin plugin, Player player, String title, int rows) {
         this.plugin = plugin;
         this.player = player;
         elements = new ArrayList<>();
-        this.inventory = Bukkit.createInventory(player, rows*9, title);
+        this.inventory = Bukkit.createInventory(player, rows * 9, title);
         player.openInventory(inventory);
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }

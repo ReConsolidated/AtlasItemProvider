@@ -2,7 +2,7 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
-import io.github.reconsolidated.atlasitemprovider.Utils;
+import io.github.reconsolidated.atlasitemprovider.Utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -33,23 +33,22 @@ public class Headless extends CustomEnchant implements Listener {
 
 
     @EventHandler
+    @SuppressWarnings("deprecation")
     public void onDamage(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
-            Player damager = (Player) event.getDamager();
-            Player damaged = (Player) event.getEntity();
+        if (event.getDamager() instanceof Player damageDealer && event.getEntity() instanceof Player damaged) {
 
-            ItemStack item = damager.getInventory().getItemInMainHand();
+            ItemStack item = damageDealer.getInventory().getItemInMainHand();
             if (get(item) > 0) {
                 int chance = 2 * get(item);
                 Random random = new Random();
                 if (chance > random.nextInt(100)) {
-                    if (Utils.hasStorageSpace(damager.getInventory())) {
+                    if (Utils.hasStorageSpace(damageDealer.getInventory())) {
                         ItemStack stolenPiece = damaged.getInventory().getHelmet();
                         if (stolenPiece == null || stolenPiece.getType() == Material.AIR) return;
                         damaged.getInventory().remove(stolenPiece);
-                        damager.getInventory().addItem(stolenPiece);
-                        damager.sendMessage(ChatColor.GREEN + "Stolen " + Utils.getDisplayName(stolenPiece) + " from " + damaged.getDisplayName());
-                        damaged.sendMessage(ChatColor.RED + damager.getDisplayName() + " stole " + Utils.getDisplayName(stolenPiece) + " from you!");
+                        damageDealer.getInventory().addItem(stolenPiece);
+                        damageDealer.sendMessage(ChatColor.GREEN + "Stolen " + Utils.getDisplayName(stolenPiece) + " from " + damaged.getDisplayName());
+                        damaged.sendMessage(ChatColor.RED + damageDealer.getDisplayName() + " stole " + Utils.getDisplayName(stolenPiece) + " from you!");
 
                     }
                 }

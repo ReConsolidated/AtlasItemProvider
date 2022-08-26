@@ -5,7 +5,7 @@ import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.Upgrade
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.Rarity;
-import io.github.reconsolidated.atlasitemprovider.Utils;
+import io.github.reconsolidated.atlasitemprovider.Utils.Utils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.ChatColor;
@@ -19,7 +19,6 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LoreProvider {

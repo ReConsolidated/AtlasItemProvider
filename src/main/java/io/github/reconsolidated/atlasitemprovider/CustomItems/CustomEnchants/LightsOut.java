@@ -2,10 +2,8 @@ package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
-import io.github.reconsolidated.atlasitemprovider.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,18 +33,17 @@ public class LightsOut extends CustomEnchant implements Listener {
 
 
     @EventHandler
+    @SuppressWarnings("deprecation")
     public void onDamage(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
-            Player damager = (Player) event.getDamager();
-            Player damaged = (Player) event.getEntity();
+        if (event.getDamager() instanceof Player damageDealer && event.getEntity() instanceof Player damaged) {
 
-            ItemStack item = damager.getInventory().getItemInMainHand();
+            ItemStack item = damageDealer.getInventory().getItemInMainHand();
             if (get(item) > 0) {
                 int chance = 12 * get(item);
                 Random random = new Random();
                 if (chance > random.nextInt(100)) {
                     damaged.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 2));
-                    damager.sendMessage(ChatColor.GREEN + "You have blinded " + damaged.getDisplayName());
+                    damageDealer.sendMessage(ChatColor.GREEN + "You have blinded " + damaged.getDisplayName());
                 }
             }
         }

@@ -1,4 +1,4 @@
-package io.github.reconsolidated.atlasitemprovider;
+package io.github.reconsolidated.atlasitemprovider.Utils;
 
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.ChatColor;
@@ -33,8 +33,8 @@ public class Utils {
         if (item == null) return null;
         if (item.getItemMeta() != null) {
             ItemMeta meta = item.getItemMeta();
-            if (meta.displayName() != null) {
-                TextComponent displayName = (TextComponent) meta.displayName();
+            TextComponent displayName = (TextComponent) meta.displayName();
+            if (displayName != null) {
                 return displayName.content();
             }
         }

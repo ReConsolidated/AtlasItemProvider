@@ -1,7 +1,6 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.MysteryEnchantedBook;
 
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Anvil.EnchantmentsAnvil;
-import io.github.reconsolidated.atlasitemprovider.CustomItems.Blacksmith.CustomAnvil;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import net.kyori.adventure.text.Component;
@@ -16,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static io.github.reconsolidated.atlasitemprovider.Utils.tr;
+import static io.github.reconsolidated.atlasitemprovider.Utils.PersistenceUtils.getInt;
+import static io.github.reconsolidated.atlasitemprovider.Utils.Utils.tr;
 
 public class MysteryBook {
 
@@ -27,7 +27,7 @@ public class MysteryBook {
     public MysteryBook(ItemStack book) {
         this.item = book;
         this.type = MysteryBookType.valueOf(book.getItemMeta().getPersistentDataContainer().get(MysteryBookManager.bookTypeKey, PersistentDataType.STRING));
-        this.chance = book.getItemMeta().getPersistentDataContainer().get(MysteryBookManager.bookLuckKey, PersistentDataType.INTEGER);
+        this.chance = getInt(book.getItemMeta(), MysteryBookManager.bookLuckKey);
     }
 
     public static ItemStack getMysteryBookItem(MysteryBookType type, int chance) {

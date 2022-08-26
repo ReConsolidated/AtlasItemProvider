@@ -8,6 +8,7 @@ import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchantingTa
 import io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants.CustomEnchant;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.MysteryEnchantedBook.MysteryBookManager;
+import io.github.reconsolidated.atlasitemprovider.MiningEntities.OilDrill.OilDrillsManager;
 import io.github.reconsolidated.atlasitemprovider.Particles.Styles.ParticleEffect;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -38,6 +39,54 @@ public final class AtlasItemProvider extends JavaPlugin  {
 
     private File dataFolder;
     private NamespacedKey nameKey;
+
+    @Override
+    public void onEnable() {
+        // Plugin startup logic
+        plugin = this;
+        ppAPI = PlayerParticlesAPI.getInstance();
+
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            for (FixedParticleEffect effect : ppAPI.getFixedParticleEffects(Bukkit.getConsoleSender())) {
+                ppAPI.removeFixedEffect(Bukkit.getConsoleSender(), effect.getId());
+            }
+        }, 40L);
+
+
+
+
+        nameKey = new NamespacedKey(this, "item_name");
+        dataFolder = getDataFolder();
+
+        new ItemProviderCommand(this);
+
+        ItemTrait.initTraits();
+        CustomEnchant.init();
+        new BlacksmithCommand();
+        new EnchantTableOpenListener();
+        new MysteryBookManager(this);
+        new OilDrillsManager();
+
+        getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);
+        Bukkit.getScheduler().runTaskLater(this, () -> {
+            ExampleItems.init(this, this.getDataFolder());
+        }, 100L);
+
+        getServer().getPluginManager().registerEvents(new EnchantmentsAnvil(), this);
+
+        Bukkit.getScheduler().runTaskTimer(this, ParticleEffect::tickParticles, 20L, 1L);
+
+        Translations.createDefaultTranslationsFile();
+        Translations.loadTranslations();
+    }
+
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+    }
+
+
+
 
     public ItemStack getItem(String category, String name, int amount) {
         YamlConfiguration config = CustomConfig.loadCustomConfig(category, dataFolder, true);
@@ -89,46 +138,7 @@ public final class AtlasItemProvider extends JavaPlugin  {
         return name;
     }
 
-    @Override
-    public void onEnable() {
-        // Plugin startup logic
-        plugin = this;
-        ppAPI = PlayerParticlesAPI.getInstance();
 
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            for (FixedParticleEffect effect : ppAPI.getFixedParticleEffects(Bukkit.getConsoleSender())) {
-                ppAPI.removeFixedEffect(Bukkit.getConsoleSender(), effect.getId());
-            }
-        }, 40L);
-
-
-        
-        
-        nameKey = new NamespacedKey(this, "item_name");
-        dataFolder = getDataFolder();
-
-        new ItemProviderCommand(this);
-
-        ItemTrait.initTraits();
-        CustomEnchant.init();
-        new BlacksmithCommand();
-        new EnchantTableOpenListener();
-        new MysteryBookManager(this);
-
-        getServer().getServicesManager().register(AtlasItemProvider.class, this, this, ServicePriority.Normal);
-        Bukkit.getScheduler().runTaskLater(this, () -> {
-            ExampleItems.init(this, this.getDataFolder());
-        }, 100L);
-
-        getServer().getPluginManager().registerEvents(new EnchantmentsAnvil(), this);
-
-        Bukkit.getScheduler().runTaskTimer(this, ParticleEffect::tickParticles, 20L, 1L);
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
 
     private static ItemStack nameItem(ItemStack item, Component displayName) {
         ItemMeta meta = item.getItemMeta();
