@@ -4,7 +4,7 @@ main: io.github.reconsolidated.atlasitemprovider.AtlasItemProvider
 api-version: 1.17
 load: STARTUP
 authors: [ GracjanPasik ]
-depend: [ PlayerParticles, AtlasCoreData ]
+depend: [ PlayerParticles ]
 description: This plugin provides Items for other plugins on Atlas Network
 commands:
   itemprovider:

@@ -1,24 +1,13 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits;
 
-import dev.simplix.plugins.atlascoredata.AtlasCoreDataAPI;
-import dev.simplix.plugins.atlascoredata.model.RankedItem;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
+import io.github.reconsolidated.atlasitemprovider.rankedItems.RankedItem;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.*;
+import java.util.List;
 
 public class Rank extends ItemTrait {
     private static Rank instance;
@@ -37,25 +26,33 @@ public class Rank extends ItemTrait {
 
     @Override
     public Double get(ItemStack item) {
-        List<RankedItem> items = AtlasCoreDataAPI.instance().rankedItemStorage().items();
-        Bukkit.getLogger().info("Ranked items count: " + items.size());
+        String itemName = AtlasItemProvider.plugin.getItemName(item);
         long ID = getID(item);
+        List<RankedItem> items = AtlasItemProvider.plugin.getRankedItemsService().getAllByItemName(itemName);
+        RankedItem currentItem = null;
         for (RankedItem ri : items) {
-            if (ri.id() == ID) {
-                AtlasCoreDataAPI.instance().rankedItemStorage().delete(ri);
+            if (ri.getId() == ID) {
+                currentItem = ri;
             }
         }
-        RankedItem newItem = new RankedItem(AtlasItemProvider.plugin.getItemName(item), ID, (int) getRankScore(item));
-        AtlasCoreDataAPI.instance().rankedItemStorage().save(newItem);
-        items.add(newItem);
-        items.sort(Comparator.comparing(RankedItem::score));
-        for (int i = 0; i<items.size(); i++) {
-            RankedItem ri = items.get(i);
-            if (ri.id() == ID) {
-                return (double)i+1;
-            }
-        }
-        throw new RuntimeException("Exception at getRank method, there is no item in list despite being added.");
+        double score = getRankScore(item);
+        score = Math.min(100.0, score);
+        return 100-score;
+
+//        if (currentItem == null) {
+//            currentItem = new RankedItem(itemName, score);
+//        }
+//
+//        AtlasCoreDataAPI.instance().rankedItemStorage().save(newItem);
+//        items.add(newItem);
+//        items.sort(Comparator.comparing(RankedItem::score));
+//        for (int i = 0; i<items.size(); i++) {
+//            RankedItem ri = items.get(i);
+//            if (ri.id() == ID) {
+//                return (double)i+1;
+//            }
+//        }
+ //       throw new RuntimeException("Exception at getRank method, there is no item in list despite being added.");
     }
 
     private double getRankScore(ItemStack item) {

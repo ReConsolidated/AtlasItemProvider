@@ -1,13 +1,11 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
-import dev.simplix.plugins.atlascoredata.AtlasCoreDataAPI;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -15,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.economy;
 import static io.github.reconsolidated.atlasitemprovider.AtlasItemProvider.plugin;
 
 public class Robber extends CustomEnchant implements Listener {
@@ -66,7 +65,7 @@ public class Robber extends CustomEnchant implements Listener {
             Random random = new Random();
             int cash = random.nextInt(max-min+1) + min;
 
-            AtlasCoreDataAPI.instance().playerDataStorage().addBalance(player.getUniqueId(), "currency", cash);
+            economy.depositPlayer(player, cash);
             player.sendMessage(ChatColor.YELLOW + "Received " + ChatColor.GOLD + ""
                     + cash + ChatColor.YELLOW + " from Robber Enchant.");
         }

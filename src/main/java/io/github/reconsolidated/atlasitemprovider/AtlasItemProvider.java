@@ -10,10 +10,15 @@ import io.github.reconsolidated.atlasitemprovider.CustomItems.ItemTraits.*;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.MysteryEnchantedBook.MysteryBookManager;
 import io.github.reconsolidated.atlasitemprovider.MiningEntities.OilDrill.OilDrillsManager;
 import io.github.reconsolidated.atlasitemprovider.Particles.Styles.ParticleEffect;
+import io.github.reconsolidated.atlasitemprovider.databaseConnection.ConnectionFactory;
+import io.github.reconsolidated.atlasitemprovider.databaseConnection.MySQLConnectionFactory;
+import io.github.reconsolidated.atlasitemprovider.rankedItems.RankedItemsService;
+import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -22,6 +27,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,6 +38,12 @@ import java.util.List;
 public final class AtlasItemProvider extends JavaPlugin  {
     public static AtlasItemProvider plugin;
     public static PlayerParticlesAPI ppAPI;
+    public static Economy economy = null;
+    @Getter
+    private RankedItemsService rankedItemsService;
+
+    @Getter
+    private final ConnectionFactory connectionFactory = new MySQLConnectionFactory();
 
     static {
         ConfigurationSerialization.registerClass(ProviderItem.class, "provideritem");
@@ -46,17 +58,22 @@ public final class AtlasItemProvider extends JavaPlugin  {
         plugin = this;
         ppAPI = PlayerParticlesAPI.getInstance();
 
+        if (!setupEconomy() ) {
+            Bukkit.getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             for (FixedParticleEffect effect : ppAPI.getFixedParticleEffects(Bukkit.getConsoleSender())) {
                 ppAPI.removeFixedEffect(Bukkit.getConsoleSender(), effect.getId());
             }
         }, 40L);
 
-
-
-
         nameKey = new NamespacedKey(this, "item_name");
         dataFolder = getDataFolder();
+
+        rankedItemsService = new RankedItemsService();
 
         new ItemProviderCommand(this);
 
@@ -152,5 +169,17 @@ public final class AtlasItemProvider extends JavaPlugin  {
         assert config != null : "Couldn't load config: " + category;
         config.set(name, item);
         CustomConfig.saveCustomConfig(category, dataFolder, config);
+    }
+
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        economy = rsp.getProvider();
+        return economy != null;
     }
 }

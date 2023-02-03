@@ -1,6 +1,5 @@
 package io.github.reconsolidated.atlasitemprovider.CustomItems.CustomEnchants;
 
-import dev.simplix.plugins.atlascoredata.AtlasCoreDataAPI;
 import io.github.reconsolidated.atlasitemprovider.AtlasItemProvider;
 import io.github.reconsolidated.atlasitemprovider.CustomItems.Rarity;
 import org.bukkit.Bukkit;
@@ -11,11 +10,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 public class FinancialLoss  extends CustomEnchant implements Listener {
@@ -66,8 +63,8 @@ public class FinancialLoss  extends CustomEnchant implements Listener {
             int level = get(event.getBow());
             if (level > 0) {
                 double percent = 0.04 * level;
-                double money = AtlasCoreDataAPI.instance().playerDataStorage().balance(player.getUniqueId(), "currency");
-                AtlasCoreDataAPI.instance().playerDataStorage().removeBalance(player.getUniqueId(), "currency", money * percent);
+                double money = AtlasItemProvider.economy.getBalance(player);
+                AtlasItemProvider.economy.withdrawPlayer(player, money * percent);
                 player.sendMessage(ChatColor.GREEN + "[FINANCIAL LOSS]" + ChatColor.YELLOW + " Arrow shot with "
                         + ChatColor.RED + "%.2f".formatted(money * percent) + ChatColor.YELLOW + " bonus damage!" );
                 arrowBonusDamage.put(event.getProjectile().getUniqueId(), money * percent);
